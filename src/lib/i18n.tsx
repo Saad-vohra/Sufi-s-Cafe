@@ -49,7 +49,7 @@ const en = {
   menuTitle: "The menu.",
   from: "from",
   draftNote: "Draft list only — nothing is ordered or paid here.",
-  photosNote: "All photography © Luna Cafe",
+  photosNote: "All photography © Sufi's Cafe",
   faq: [
     { q: "What are your hours?", a: "Both rooms are open daily, 08:00 – 21:00." },
     {
@@ -100,7 +100,7 @@ const hi: typeof en = {
   menuTitle: "मेन्यू।",
   from: "से",
   draftNote: "यह केवल एक सूची है — यहाँ कोई ऑर्डर या भुगतान नहीं होता।",
-  photosNote: "सभी तस्वीरें © लूना कैफ़े",
+  photosNote: "सभी तस्वीरें © सूफ़ी कैफ़े",
   faq: [
     { q: "आपका समय क्या है?", a: "दोनों जगह रोज़ाना 08:00 – 21:00 तक खुली रहती हैं।" },
     { q: "क्या बुकिंग होती है?", a: "जी हाँ — कॉल कीजिए, हम टेबल रोक लेंगे।" },

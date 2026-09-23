@@ -1,8 +1,8 @@
 // Brand data — single source of truth for every brand string on the site.
 
 export const BRAND = {
-  mark: "LUNA",
-  name: "Luna Cafe",
+  mark: "SUFI'S",
+  name: "Sufi's Cafe",
   city: "Bengaluru, India",
   tagline: {
     en: "specialty coffee · matcha bar · all-day brunch",
@@ -11,7 +11,7 @@ export const BRAND = {
   phone: "+91 79843 42874",
   tel: "tel:+917984342874",
   hours: "08:00 – 21:00",
-  instagram: "@luna_cafe",
+  instagram: "@sufis_cafe",
   instagramUrl: null as string | null, // null → rendered as text, not a link
   currency: "₹",
   rating: null as number | null,

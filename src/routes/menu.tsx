@@ -13,13 +13,13 @@ import { STILL, getScroll, onLenisScroll, scrollToY, useLenis } from "@/lib/scro
 export const Route = createFileRoute("/menu")({
   head: () => ({
     meta: [
-      { title: "Menu — Luna Cafe | coffee, matcha, brunch & pastry" },
+      { title: "Menu — Sufi's Cafe | coffee, matcha, brunch & pastry" },
       {
         name: "description",
         content:
-          "The full Luna Cafe menu: filter and espresso coffee, a ceremonial matcha bar, all-day brunch, bowls, pastry and cold drinks.",
+          "The full Sufi's Cafe menu: filter and espresso coffee, a ceremonial matcha bar, all-day brunch, bowls, pastry and cold drinks.",
       },
-      { property: "og:title", content: "The Luna Cafe menu" },
+      { property: "og:title", content: "The Sufi's Cafe menu" },
       {
         property: "og:description",
         content: "Coffee, matcha, brunch, bowls and pastry — the full list, in two languages.",

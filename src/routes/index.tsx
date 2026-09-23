@@ -19,16 +19,16 @@ const HERO_OG = "https://luna-coffee.lovable.app/images/hero-green.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Luna Cafe — specialty coffee, matcha bar & all-day brunch" },
+      { title: "Sufi's Cafe — specialty coffee, matcha bar & all-day brunch" },
       {
         name: "description",
         content:
-          "Luna Cafe: slow filter coffee, a ceremonial matcha bar and brunch served all day, in two warm rooms. Open daily 08:00–21:00.",
+          "Sufi's Cafe: slow filter coffee, a ceremonial matcha bar and brunch served all day, in two warm rooms. Open daily 08:00–21:00.",
       },
-      { property: "og:title", content: "Luna Cafe — specialty coffee, matcha bar & all-day brunch" },
+      { property: "og:title", content: "Sufi's Cafe — specialty coffee, matcha bar & all-day brunch" },
       {
         property: "og:description",
-        content: "Luna Cafe: slow filter coffee, a ceremonial matcha bar and brunch served all day, in two warm rooms. Open daily 08:00–21:00.",
+        content: "Sufi's Cafe: slow filter coffee, a ceremonial matcha bar and brunch served all day, in two warm rooms. Open daily 08:00–21:00.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://luna-coffee.lovable.app/" },
