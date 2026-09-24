@@ -4,11 +4,11 @@ import { ArrowLeft, Phone } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { IntroRibbon } from "@/components/site/IntroRibbon";
 import { LangSwitch } from "@/components/site/LangSwitch";
+import { MenuItemModal } from "@/components/site/MenuItemModal";
 import { MENU, type FullMenuItem } from "@/data/menu";
 import { BRAND, money } from "@/lib/brand";
 import { useLang } from "@/lib/i18n";
 import { STILL, getScroll, onLenisScroll, scrollToY, useLenis } from "@/lib/scroll";
-
 
 export const Route = createFileRoute("/menu")({
   head: () => ({
@@ -60,13 +60,13 @@ function MenuPage() {
   const { t, lang, display } = useLang();
   const navigate = useNavigate();
   const still = STILL();
-  const [active, setActive] = useState(MENU[0].id);
+  const [active, setActive] = useState<string>("all");
+  const [selectedItem, setSelectedItem] = useState<FullMenuItem | null>(null);
   const [cart, setCart] = useState<{ id: string; price: number }[]>([]);
   const navRef = useRef<HTMLElement | null>(null);
   const railRef = useRef<HTMLDivElement | null>(null);
   const [navH, setNavH] = useState(72);
   const [intro, setIntro] = useState(!still);
-
 
   useLenis(!still);
 
@@ -80,35 +80,52 @@ function MenuPage() {
   const chromeHeight = () =>
     (navRef.current?.offsetHeight ?? 0) + (railRef.current?.offsetHeight ?? 0);
 
-  useEffect(
-    () =>
-      onLenisScroll(() => {
+  useEffect(() => {
+    if (active === "all") {
+      return onLenisScroll(() => {
         const limit = chromeHeight() + 20;
-        let current = MENU[0].id;
+        let current = "all";
         for (const cat of MENU) {
           const h = document.getElementById(`h-${cat.id}`);
-          if (h && h.getBoundingClientRect().top <= limit) current = cat.id;
+          if (h && h.getBoundingClientRect().top <= limit) {
+            current = cat.id;
+          }
         }
-        setActive(current);
-      }),
-    [],
-  );
+        // Only highlight if scrolled into sections, else keep active
+        const chip = document.querySelector<HTMLElement>(`[data-chip="${current}"]`);
+        const rail = railRef.current?.querySelector<HTMLElement>(".no-scrollbar");
+        if (chip && rail && current !== "all") {
+          const target = chip.offsetLeft - rail.clientWidth / 2 + chip.offsetWidth / 2;
+          const max = rail.scrollWidth - rail.clientWidth;
+          rail.scrollTo({ left: Math.max(0, Math.min(target, max)), behavior: "smooth" });
+        }
+      });
+    }
+  }, [active]);
 
   useEffect(() => {
     const chip = document.querySelector<HTMLElement>(`[data-chip="${active}"]`);
     const rail = railRef.current?.querySelector<HTMLElement>(".no-scrollbar");
     if (!chip || !rail) return;
-    // scroll only the horizontal rail — scrollIntoView would also scroll the page
     const target = chip.offsetLeft - rail.clientWidth / 2 + chip.offsetWidth / 2;
     const max = rail.scrollWidth - rail.clientWidth;
     rail.scrollTo({ left: Math.max(0, Math.min(target, max)), behavior: "smooth" });
   }, [active]);
 
-  const jump = (id: string) => {
-    const h = document.getElementById(`h-${id}`);
-    if (!h) return;
-    scrollToY(h.getBoundingClientRect().top + getScroll() - chromeHeight() - 12);
+  const onCategorySelect = (id: string) => {
+    setActive(id);
+    if (railRef.current) {
+      const railRect = railRef.current.getBoundingClientRect();
+      const currentScroll = getScroll();
+      const railDocTop = railRect.top + currentScroll - navH;
+      if (currentScroll > railDocTop) {
+        scrollToY(railDocTop);
+      }
+    }
   };
+
+  const displayedCategories =
+    active === "all" ? MENU : MENU.filter((cat) => cat.id === active);
 
   const total = cart.reduce((s, c) => s + c.price, 0);
 
@@ -175,15 +192,27 @@ function MenuPage() {
         style={{ top: navH }}
       >
         <div className="container-x no-scrollbar flex gap-2 overflow-x-auto py-3 [-webkit-overflow-scrolling:touch]">
+          <button
+            data-chip="all"
+            onClick={() => onCategorySelect("all")}
+            className={`shrink-0 rounded-full border px-4 py-2 text-[13px] font-medium transition-colors ${
+              active === "all"
+                ? "border-ink bg-ink text-paper"
+                : "border-[rgba(0,98,65,0.22)] text-ink hover:bg-[rgba(0,98,65,0.05)]"
+            }`}
+          >
+            {t.all || "All"}
+          </button>
           {MENU.map((cat) => (
             <button
               key={cat.id}
               data-chip={cat.id}
-              onClick={() => jump(cat.id)}
-              className={`shrink-0 rounded-full border px-4 py-2 text-[13px] font-medium transition-colors ${active === cat.id
+              onClick={() => onCategorySelect(cat.id)}
+              className={`shrink-0 rounded-full border px-4 py-2 text-[13px] font-medium transition-colors ${
+                active === cat.id
                   ? "border-ink bg-ink text-paper"
                   : "border-[rgba(0,98,65,0.22)] text-ink hover:bg-[rgba(0,98,65,0.05)]"
-                }`}
+              }`}
             >
               {cat.label[lang]}
             </button>
@@ -192,16 +221,15 @@ function MenuPage() {
       </div>
 
       <main className="container-x pb-44 sm:pb-40">
-        {MENU.map((cat) => (
+        {displayedCategories.map((cat) => (
           <section key={cat.id} id={cat.id} className="pt-12 sm:pt-16">
             <motion.h2
               id={`h-${cat.id}`}
               className={display}
               style={{ fontSize: "clamp(26px,6.5vw,50px)" }}
               initial={still ? false : { opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-10% 0px" }}
-              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
             >
               {cat.label[lang]}
             </motion.h2>
@@ -210,18 +238,17 @@ function MenuPage() {
                 <motion.div
                   key={it.title.en}
                   className="flex"
-                  initial={still ? false : { opacity: 0, y: 28 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-8% 0px" }}
+                  initial={still ? false : { opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
                   transition={{
-                    duration: 0.6,
+                    duration: 0.4,
                     ease: [0.22, 1, 0.36, 1],
-                    delay: still ? 0 : Math.min(i, 3) * 0.07,
+                    delay: still ? 0 : Math.min(i, 4) * 0.04,
                   }}
                 >
                   <MenuCard
                     item={it}
-                    onAdd={() => setCart((c) => [...c, { id: it.title.en, price: it.price }])}
+                    onViewDetails={() => setSelectedItem(it)}
                   />
                 </motion.div>
               ))}
@@ -230,6 +257,10 @@ function MenuPage() {
         ))}
       </main>
 
+      <MenuItemModal
+        item={selectedItem}
+        onClose={() => setSelectedItem(null)}
+      />
 
       {cart.length > 0 && !still && (
         <motion.div
@@ -250,19 +281,27 @@ function MenuPage() {
             </a>
             <span className="w-full text-center text-[11px] text-paper/60">{t.draftNote}</span>
           </div>
-
         </motion.div>
       )}
     </div>
   );
 }
 
-function MenuCard({ item, onAdd }: { item: FullMenuItem; onAdd: () => void }) {
+function MenuCard({
+  item,
+  onViewDetails,
+}: {
+  item: FullMenuItem;
+  onViewDetails: () => void;
+}) {
   const { t, lang } = useLang();
   const chips: string[] = [];
   if (item.allergens[lang].length) chips.push(item.allergens[lang].join(", "));
   return (
-    <article className="group flex w-full flex-col overflow-hidden rounded-[22px] border bg-white shadow-[0_24px_50px_-40px_rgba(0,98,65,.35)] transition-transform duration-300 hover:-translate-y-1 sm:rounded-[26px]">
+    <article
+      onClick={onViewDetails}
+      className="group flex w-full cursor-pointer flex-col overflow-hidden rounded-[22px] border bg-white shadow-[0_24px_50px_-40px_rgba(0,98,65,.35)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_50px_-20px_rgba(0,98,65,.25)] sm:rounded-[26px]"
+    >
       {item.img && (
         <div className="aspect-[3/2] overflow-hidden">
           <img
@@ -277,11 +316,16 @@ function MenuCard({ item, onAdd }: { item: FullMenuItem; onAdd: () => void }) {
         </div>
       )}
       <div className="flex flex-1 flex-col p-4 sm:p-5">
-        <h3 className="text-[17px] font-semibold sm:text-[18px]">{item.title[lang]}</h3>
+        <h3 className="text-[17px] font-semibold sm:text-[18px] transition-colors group-hover:text-[#006241]">
+          {item.title[lang]}
+        </h3>
 
         <div className="mt-2 flex flex-wrap gap-2">
           {chips.map((c) => (
-            <span key={c} className="rounded-full bg-[#d4e9e2] px-2.5 py-1 text-[12px] font-medium text-[#006241]">
+            <span
+              key={c}
+              className="rounded-full bg-[#d4e9e2] px-2.5 py-1 text-[12px] font-medium text-[#006241]"
+            >
               {c}
             </span>
           ))}
@@ -297,10 +341,17 @@ function MenuCard({ item, onAdd }: { item: FullMenuItem; onAdd: () => void }) {
           )}
         </div>
         <p className="mt-3 text-[13.5px] text-muted">{item.desc[lang]}</p>
-        <div className="mt-auto flex items-center justify-between pt-5">
+        <div className="mt-auto flex items-center justify-between gap-3 pt-5">
           <span className="text-[17px] font-semibold text-ink">{money(item.price)}</span>
-          <button onClick={onAdd} className="btn-ink !px-4 !py-2">
-            {t.add}
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              onViewDetails();
+            }}
+            className="btn-ink !px-4 !py-2 text-[13px] font-medium whitespace-nowrap hover:scale-105 transition-transform"
+          >
+            {t.viewDetails}
           </button>
         </div>
       </div>
