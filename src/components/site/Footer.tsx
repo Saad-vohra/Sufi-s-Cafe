@@ -33,8 +33,8 @@ export function Footer() {
           {BRAND.mark}
         </motion.div>
         <img
-          src="/images/logo.webp"
-          alt="Starbucks Emblem"
+          src="/images/logo.png"
+          alt="Sufi's Cafe Emblem"
           className="size-24 sm:size-36 md:size-48 opacity-25 object-contain shrink-0"
         />
       </div>

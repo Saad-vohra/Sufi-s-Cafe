@@ -425,8 +425,20 @@ function HomePage() {
           <div className="flex flex-col justify-between rounded-[24px] bg-[#1e3932] p-8 text-paper shadow-xl">
             <div>
               <div className="flex items-center gap-3 mb-4">
-                <img src="/images/logo.webp" alt="Logo" className="size-8 object-contain drop-shadow" />
-                <span className="text-xs uppercase tracking-widest text-[#d4e9e2]">Starbucks Reserve Aesthetic</span>
+                <img
+                  src="/images/logo.png"
+                  alt="Sufi's Cafe Logo"
+                  className="size-11 rounded-full object-contain drop-shadow ring-1.5 ring-paper/40"
+                />
+                <div className="h-7 w-px bg-paper/30" />
+                <div className="flex flex-col text-left">
+                  <span className="font-serif tracking-[0.18em] font-bold text-paper text-[15px] leading-tight">
+                    {BRAND.mark}
+                  </span>
+                  <span className="text-[9px] uppercase tracking-[0.24em] text-[#d4e9e2] font-semibold">
+                    COFFEE & CRAFT
+                  </span>
+                </div>
               </div>
               <h3 className={display} style={{ fontSize: 38 }}>
                 {t.yourTable}

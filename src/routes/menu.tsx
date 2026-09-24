@@ -4,11 +4,10 @@ import { ArrowLeft, Phone } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { IntroRibbon } from "@/components/site/IntroRibbon";
 import { LangSwitch } from "@/components/site/LangSwitch";
-import { MenuItemModal } from "@/components/site/MenuItemModal";
 import { MENU, type FullMenuItem } from "@/data/menu";
 import { BRAND, money } from "@/lib/brand";
 import { useLang } from "@/lib/i18n";
-import { STILL, getScroll, scrollToY, useLenis } from "@/lib/scroll";
+import { STILL, getScroll, onLenisScroll, scrollToY, useLenis } from "@/lib/scroll";
 
 
 export const Route = createFileRoute("/menu")({
@@ -61,12 +60,13 @@ function MenuPage() {
   const { t, lang, display } = useLang();
   const navigate = useNavigate();
   const still = STILL();
-  const [active, setActive] = useState<string>("all");
-  const [selectedItem, setSelectedItem] = useState<FullMenuItem | null>(null);
+  const [active, setActive] = useState(MENU[0].id);
+  const [cart, setCart] = useState<{ id: string; price: number }[]>([]);
   const navRef = useRef<HTMLElement | null>(null);
   const railRef = useRef<HTMLDivElement | null>(null);
   const [navH, setNavH] = useState(72);
   const [intro, setIntro] = useState(!still);
+
 
   useLenis(!still);
 
@@ -80,6 +80,20 @@ function MenuPage() {
   const chromeHeight = () =>
     (navRef.current?.offsetHeight ?? 0) + (railRef.current?.offsetHeight ?? 0);
 
+  useEffect(
+    () =>
+      onLenisScroll(() => {
+        const limit = chromeHeight() + 20;
+        let current = MENU[0].id;
+        for (const cat of MENU) {
+          const h = document.getElementById(`h-${cat.id}`);
+          if (h && h.getBoundingClientRect().top <= limit) current = cat.id;
+        }
+        setActive(current);
+      }),
+    [],
+  );
+
   useEffect(() => {
     const chip = document.querySelector<HTMLElement>(`[data-chip="${active}"]`);
     const rail = railRef.current?.querySelector<HTMLElement>(".no-scrollbar");
@@ -90,21 +104,13 @@ function MenuPage() {
     rail.scrollTo({ left: Math.max(0, Math.min(target, max)), behavior: "smooth" });
   }, [active]);
 
-  const onCategorySelect = (id: string) => {
-    setActive(id);
-    if (railRef.current) {
-      const railRect = railRef.current.getBoundingClientRect();
-      const currentScroll = getScroll();
-      const railDocTop = railRect.top + currentScroll - navH;
-      if (currentScroll > railDocTop) {
-        scrollToY(railDocTop);
-      }
-    }
+  const jump = (id: string) => {
+    const h = document.getElementById(`h-${id}`);
+    if (!h) return;
+    scrollToY(h.getBoundingClientRect().top + getScroll() - chromeHeight() - 12);
   };
 
-  const displayedCategories =
-    active === "all" ? MENU : MENU.filter((cat) => cat.id === active);
-
+  const total = cart.reduce((s, c) => s + c.price, 0);
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-paper">
@@ -118,13 +124,23 @@ function MenuPage() {
           <button
             onClick={() => navigate({ to: "/" })}
             aria-label="Back to home"
-            className="group flex min-w-0 items-center gap-2.5"
+            className="group flex min-w-0 items-center gap-3 sm:gap-4 py-1"
           >
-            <ArrowLeft className="size-4 shrink-0 text-ink transition-transform duration-200 group-hover:-translate-x-1" />
-            <img src="/images/logo.webp" alt="Logo" className="size-8 object-contain drop-shadow" />
-            <span className="truncate font-serif tracking-[0.14em] text-ink text-[20px] sm:text-[24px]">
-              {BRAND.mark}
-            </span>
+            <ArrowLeft className="size-5 shrink-0 text-ink transition-transform duration-200 group-hover:-translate-x-1" />
+            <img
+              src="/images/logo.png"
+              alt="Sufi's Cafe Logo"
+              className="size-14 sm:size-16 rounded-full object-contain drop-shadow-md transition-transform duration-300 group-hover:scale-105 shrink-0 ring-1 ring-[rgba(0,98,65,0.2)]"
+            />
+            <div className="h-9 w-px bg-ink/20 hidden xs:block" />
+            <div className="flex flex-col text-left">
+              <span className="font-serif tracking-[0.2em] font-bold text-ink leading-none text-[20px] sm:text-[24px]">
+                SUFI'S
+              </span>
+              <span className="text-[10px] sm:text-[11.5px] font-semibold uppercase tracking-[0.28em] text-ink/75 mt-1 leading-none">
+                COFFEE & CRAFT
+              </span>
+            </div>
           </button>
           <span className="hidden text-[13px] text-muted lg:block">{BRAND.hours}</span>
           <div className="flex shrink-0 items-center gap-2 sm:gap-3">
@@ -159,27 +175,15 @@ function MenuPage() {
         style={{ top: navH }}
       >
         <div className="container-x no-scrollbar flex gap-2 overflow-x-auto py-3 [-webkit-overflow-scrolling:touch]">
-          <button
-            data-chip="all"
-            onClick={() => onCategorySelect("all")}
-            className={`shrink-0 rounded-full border px-4 py-2 text-[13px] font-medium transition-colors ${
-              active === "all"
-                ? "border-ink bg-ink text-paper"
-                : "border-[rgba(0,98,65,0.22)] text-ink hover:bg-[rgba(0,98,65,0.05)]"
-            }`}
-          >
-            {t.all}
-          </button>
           {MENU.map((cat) => (
             <button
               key={cat.id}
               data-chip={cat.id}
-              onClick={() => onCategorySelect(cat.id)}
-              className={`shrink-0 rounded-full border px-4 py-2 text-[13px] font-medium transition-colors ${
-                active === cat.id
+              onClick={() => jump(cat.id)}
+              className={`shrink-0 rounded-full border px-4 py-2 text-[13px] font-medium transition-colors ${active === cat.id
                   ? "border-ink bg-ink text-paper"
                   : "border-[rgba(0,98,65,0.22)] text-ink hover:bg-[rgba(0,98,65,0.05)]"
-              }`}
+                }`}
             >
               {cat.label[lang]}
             </button>
@@ -188,15 +192,16 @@ function MenuPage() {
       </div>
 
       <main className="container-x pb-44 sm:pb-40">
-        {displayedCategories.map((cat) => (
+        {MENU.map((cat) => (
           <section key={cat.id} id={cat.id} className="pt-12 sm:pt-16">
             <motion.h2
               id={`h-${cat.id}`}
               className={display}
               style={{ fontSize: "clamp(26px,6.5vw,50px)" }}
               initial={still ? false : { opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-10% 0px" }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             >
               {cat.label[lang]}
             </motion.h2>
@@ -205,17 +210,18 @@ function MenuPage() {
                 <motion.div
                   key={it.title.en}
                   className="flex"
-                  initial={still ? false : { opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  initial={still ? false : { opacity: 0, y: 28 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-8% 0px" }}
                   transition={{
-                    duration: 0.4,
+                    duration: 0.6,
                     ease: [0.22, 1, 0.36, 1],
-                    delay: still ? 0 : Math.min(i, 4) * 0.04,
+                    delay: still ? 0 : Math.min(i, 3) * 0.07,
                   }}
                 >
                   <MenuCard
                     item={it}
-                    onViewDetails={() => setSelectedItem(it)}
+                    onAdd={() => setCart((c) => [...c, { id: it.title.en, price: it.price }])}
                   />
                 </motion.div>
               ))}
@@ -224,29 +230,39 @@ function MenuPage() {
         ))}
       </main>
 
-      <MenuItemModal
-        item={selectedItem}
-        onClose={() => setSelectedItem(null)}
-      />
+
+      {cart.length > 0 && !still && (
+        <motion.div
+          initial={{ y: 90, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ type: "spring", stiffness: 320, damping: 28 }}
+          className="fixed inset-x-0 bottom-4 z-[70] flex justify-center px-3 pb-[env(safe-area-inset-bottom)] sm:bottom-5 sm:px-4"
+        >
+          <div className="flex w-full max-w-[560px] flex-wrap items-center justify-center gap-3 rounded-[28px] bg-[#1e3932] px-4 py-3 text-paper shadow-[0_24px_50px_-24px_rgba(0,98,65,.6)] sm:gap-4 sm:rounded-full sm:px-6">
+            <span className="text-[13px] sm:text-[14px]">
+              {cart.length} {cart.length === 1 ? t.itemsOne : t.itemsMany} · {money(total)}
+            </span>
+            <button onClick={() => setCart([])} className="text-[13px] text-paper/70 hover:text-paper underline">
+              {t.clear}
+            </button>
+            <a href={BRAND.tel} className="btn-ink !border-paper !bg-paper !text-ink !px-4 !py-2 hover:!bg-[#d4e9e2]">
+              {t.order}
+            </a>
+            <span className="w-full text-center text-[11px] text-paper/60">{t.draftNote}</span>
+          </div>
+
+        </motion.div>
+      )}
     </div>
   );
 }
 
-function MenuCard({
-  item,
-  onViewDetails,
-}: {
-  item: FullMenuItem;
-  onViewDetails: () => void;
-}) {
+function MenuCard({ item, onAdd }: { item: FullMenuItem; onAdd: () => void }) {
   const { t, lang } = useLang();
   const chips: string[] = [];
   if (item.allergens[lang].length) chips.push(item.allergens[lang].join(", "));
   return (
-    <article
-      onClick={onViewDetails}
-      className="group flex w-full cursor-pointer flex-col overflow-hidden rounded-[22px] border bg-white shadow-[0_24px_50px_-40px_rgba(0,98,65,.35)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_50px_-20px_rgba(0,98,65,.25)] sm:rounded-[26px]"
-    >
+    <article className="group flex w-full flex-col overflow-hidden rounded-[22px] border bg-white shadow-[0_24px_50px_-40px_rgba(0,98,65,.35)] transition-transform duration-300 hover:-translate-y-1 sm:rounded-[26px]">
       {item.img && (
         <div className="aspect-[3/2] overflow-hidden">
           <img
@@ -261,16 +277,11 @@ function MenuCard({
         </div>
       )}
       <div className="flex flex-1 flex-col p-4 sm:p-5">
-        <h3 className="text-[17px] font-semibold sm:text-[18px] transition-colors group-hover:text-[#006241]">
-          {item.title[lang]}
-        </h3>
+        <h3 className="text-[17px] font-semibold sm:text-[18px]">{item.title[lang]}</h3>
 
         <div className="mt-2 flex flex-wrap gap-2">
           {chips.map((c) => (
-            <span
-              key={c}
-              className="rounded-full bg-[#d4e9e2] px-2.5 py-1 text-[12px] font-medium text-[#006241]"
-            >
+            <span key={c} className="rounded-full bg-[#d4e9e2] px-2.5 py-1 text-[12px] font-medium text-[#006241]">
               {c}
             </span>
           ))}
@@ -286,17 +297,10 @@ function MenuCard({
           )}
         </div>
         <p className="mt-3 text-[13.5px] text-muted">{item.desc[lang]}</p>
-        <div className="mt-auto flex items-center justify-between gap-3 pt-5">
+        <div className="mt-auto flex items-center justify-between pt-5">
           <span className="text-[17px] font-semibold text-ink">{money(item.price)}</span>
-          <button
-            type="button"
-            onClick={(e) => {
-              e.stopPropagation();
-              onViewDetails();
-            }}
-            className="btn-ink !px-4 !py-2 text-[13px] font-medium whitespace-nowrap hover:scale-105 transition-transform"
-          >
-            {t.viewDetails}
+          <button onClick={onAdd} className="btn-ink !px-4 !py-2">
+            {t.add}
           </button>
         </div>
       </div>

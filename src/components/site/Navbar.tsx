@@ -66,9 +66,8 @@ export function Navbar() {
     <header className="fixed inset-x-0 top-0 z-[60]">
       {/* overlay lives inside the header so the burger stays clickable above it */}
       <div
-        className={`fixed inset-0 z-[10] bg-[#1e3932] transition-opacity duration-300 ${
-          open ? "opacity-100" : "pointer-events-none opacity-0"
-        }`}
+        className={`fixed inset-0 z-[10] bg-[#1e3932] transition-opacity duration-300 ${open ? "opacity-100" : "pointer-events-none opacity-0"
+          }`}
       >
         <div className="container-x flex h-full flex-col justify-center gap-2 pt-24 pb-14">
           {links.map((l, i) => (
@@ -98,32 +97,33 @@ export function Navbar() {
       </div>
 
       <div
-        className={`relative z-[20] transition-all duration-300 ${
-          scrolled && !open
-            ? "bg-paper/90 shadow-[0_1px_0_rgba(0,98,65,.12)] backdrop-blur-md"
-            : "bg-transparent"
-        }`}
+        className={`relative z-[20] transition-all duration-300 ${scrolled && !open
+          ? "bg-paper/90 shadow-[0_1px_0_rgba(0,98,65,.12)] backdrop-blur-md"
+          : "bg-transparent"
+          }`}
       >
         <div className="container-x flex items-center justify-between px-3 py-4 sm:px-6 lg:px-8">
-          <button onClick={() => go("start")} className="group flex items-center gap-2.5">
+          <button onClick={() => go("start")} className="group flex items-center gap-3 sm:gap-4 py-1">
             <img
-              src="/images/logo.webp"
-              alt="Logo"
-              className="size-10 rounded-full object-contain drop-shadow transition-transform duration-300 group-hover:scale-105"
+              src="/images/logo.png"
+              alt="Sufi's Cafe Logo"
+              className={`size-16 sm:size-20 md:size-24 rounded-full object-contain drop-shadow-xl transition-transform duration-300 group-hover:scale-105 shrink-0 ${light ? "ring-2 ring-paper/40" : "ring-1 ring-[rgba(0,98,65,0.2)]"
+                }`}
             />
+            <div className={`h-10 sm:h-12 w-px ${light || open ? "bg-paper/40" : "bg-ink/25"}`} />
             <div className="flex flex-col text-left">
               <span
-                className={`font-serif tracking-[0.14em] leading-tight ${light || open ? "text-paper" : "text-ink"}`}
-                style={{ fontSize: 26 }}
+                className={`font-serif tracking-[0.2em] font-bold leading-none ${light || open ? "text-paper" : "text-ink"
+                  }`}
+                style={{ fontSize: "clamp(24px, 3vw, 32px)" }}
               >
-                {BRAND.mark}
+                SUFI'S
               </span>
               <span
-                className={`text-[10px] uppercase tracking-[0.24em] leading-none ${
-                  light || open ? "text-paper/85" : "text-muted"
-                }`}
+                className={`text-[11px] sm:text-[12.5px] font-semibold uppercase tracking-[0.28em] mt-1.5 leading-none ${light || open ? "text-paper/90" : "text-ink/75"
+                  }`}
               >
-                coffee & craft
+                COFFEE & BAKERY
               </span>
             </div>
           </button>
@@ -135,9 +135,8 @@ export function Navbar() {
                 <button
                   key={l.id}
                   onClick={() => go(l.id)}
-                  className={`text-[14px] transition-colors ${
-                    light ? "text-paper/80 hover:text-paper" : "text-ink/75 hover:text-ink"
-                  }`}
+                  className={`text-[14px] transition-colors ${light ? "text-paper/80 hover:text-paper" : "text-ink/75 hover:text-ink"
+                    }`}
                 >
                   {l.label}
                 </button>
