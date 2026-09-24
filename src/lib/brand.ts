@@ -3,7 +3,7 @@
 export const BRAND = {
   mark: "SUFI'S",
   name: "Sufi's Cafe",
-  city: "Bengaluru, India",
+  city: "Kheda, India",
   tagline: {
     en: "specialty coffee · matcha bar · all-day brunch",
     hi: "स्पेशलिटी कॉफ़ी · माचा बार · ऑल-डे ब्रंच",
@@ -18,18 +18,11 @@ export const BRAND = {
   reviews: null as number | null,
   locations: [
     {
-      name: "Flagship",
-      address: "12 Church Street, Ashok Nagar, Bengaluru 560001",
-      tag: { en: "Flagship · seasonal terrace", hi: "फ्लैगशिप · मौसमी टेरेस" },
-      maps: "https://maps.google.com/?q=Church+Street+Ashok+Nagar+Bengaluru" as string | null,
+      name: "Kajipura",
+      address: "nearby coca-cola, opp. sumar logistics, beside dawat restaurant, Kajipura, Gujarat 387120",
+      tag: { en: "Main Cafe · Dine-in & Takeaway", hi: "मुख्य कैफ़े · डाइन-इन और टेकअवे" },
+      maps: "https://maps.google.com/?q=nearby+coca-cola,+opp.+sumar+logistics,+beside+dawat+restaurant,+Kajipura,+Gujarat+387120" as string | null,
       img: "/images/venue.jpg",
-    },
-    {
-      name: "Indiranagar",
-      address: "100 Feet Road, Indiranagar, Bengaluru 560038",
-      tag: { en: "In the heart of the city", hi: "शहर के बीचों-बीच" },
-      maps: "https://maps.google.com/?q=100+Feet+Road+Indiranagar+Bengaluru" as string | null,
-      img: "/images/venue-indiranagar.jpg",
     },
   ],
   isDemo: false,

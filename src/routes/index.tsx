@@ -63,7 +63,9 @@ export const Route = createFileRoute("/")({
               address: {
                 "@type": "PostalAddress",
                 streetAddress: loc.address,
-                addressLocality: "Bengaluru",
+                addressLocality: "Kajipura, Kheda",
+                addressRegion: "Gujarat",
+                postalCode: "387120",
                 addressCountry: "IN",
               },
               openingHoursSpecification: [
@@ -383,7 +385,7 @@ function HomePage() {
         <h2 className={`${display} mb-10`} style={{ fontSize: "clamp(38px,5vw,74px)" }}>
           {t.contactTitle}
         </h2>
-        <div className="grid grid-cols-[1fr_1fr_0.9fr] gap-6 max-lg:grid-cols-1">
+        <div className={`grid gap-6 ${BRAND.locations.length > 1 ? "grid-cols-[1fr_1fr_0.9fr] max-lg:grid-cols-1" : "grid-cols-1 md:grid-cols-2"}`}>
           {BRAND.locations.map((loc) => (
             <div
               key={loc.name}

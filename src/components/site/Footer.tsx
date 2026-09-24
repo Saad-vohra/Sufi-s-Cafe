@@ -7,7 +7,7 @@ import { setPendingScroll } from "@/lib/pendingScroll";
 import { STILL, scrollToId } from "@/lib/scroll";
 
 export function Footer() {
-  const { t, display } = useLang();
+  const { lang, t, display } = useLang();
   const navigate = useNavigate();
   const still = STILL();
 
@@ -41,11 +41,11 @@ export function Footer() {
 
       <div className="mt-10 grid gap-10 md:grid-cols-2">
         <div>
-          <p className="eyebrow !text-paper/85">{t.addresses}</p>
+          <p className="eyebrow !text-paper/85">{BRAND.locations.length > 1 ? t.addresses : (lang === "en" ? "Address" : "पता")}</p>
           <ul className="mt-3 space-y-1 text-[15px] text-paper/85">
             {BRAND.locations.map((l) => (
               <li key={l.name}>
-                {l.name} — {l.address}
+                {BRAND.locations.length > 1 ? `${l.name} — ` : ""}{l.address}
               </li>
             ))}
             <li className="text-paper/85">{BRAND.city}</li>
