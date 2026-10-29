@@ -1,5 +1,4 @@
-@import "tailwindcss" source(none);
-@source "../src";
+@import "tailwindcss";
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
@@ -240,3 +239,4 @@ body {
     transition-duration: 0.001ms !important;
   }
 }
+

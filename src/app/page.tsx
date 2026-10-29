@@ -1,4 +1,6 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+"use client";
+
+import { useRouter } from "next/navigation";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { AtSign, Clock, MapPin, Phone, Plus } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
@@ -8,99 +10,12 @@ import { IntroRibbon } from "@/components/site/IntroRibbon";
 import { Navbar } from "@/components/site/Navbar";
 import { categoryMin } from "@/data/menu";
 import { BRAND, money } from "@/lib/brand";
-import { STRINGS, useLang } from "@/lib/i18n";
+import { useLang } from "@/lib/i18n";
 import { homeIntroSeen, markHomeIntroSeen } from "@/lib/introState";
 import { pendingScroll, setPendingScroll } from "@/lib/pendingScroll";
 import { NOINTRO, STILL, scrollToId, useLenis } from "@/lib/scroll";
 
 const HERO_VIDEO = "/videos/hero.mp4";
-const HERO_OG = "https://luna-coffee.lovable.app/images/hero-green.jpg";
-
-export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Sufi's Cafe — specialty coffee, matcha bar & all-day brunch" },
-      {
-        name: "description",
-        content:
-          "Sufi's Cafe: slow filter coffee, a ceremonial matcha bar and brunch served all day, in two warm rooms. Open daily 08:00–21:00.",
-      },
-      { property: "og:title", content: "Sufi's Cafe — specialty coffee, matcha bar & all-day brunch" },
-      {
-        property: "og:description",
-        content: "Sufi's Cafe: slow filter coffee, a ceremonial matcha bar and brunch served all day, in two warm rooms. Open daily 08:00–21:00.",
-      },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://luna-coffee.lovable.app/" },
-      { property: "og:image", content: HERO_OG },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: HERO_OG },
-    ],
-    links: [
-      { rel: "canonical", href: "https://luna-coffee.lovable.app/" },
-      {
-        rel: "preload",
-        as: "video",
-        href: HERO_VIDEO,
-        type: "video/mp4",
-      },
-    ],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@graph": [
-            ...BRAND.locations.map((loc) => ({
-              "@type": "CafeOrCoffeeShop",
-              name: `${BRAND.name} · ${loc.name}`,
-              url: "https://luna-coffee.lovable.app/",
-              image: HERO_OG,
-              telephone: BRAND.phone,
-              servesCuisine: ["Coffee", "Matcha", "Brunch"],
-              hasMenu: "https://luna-coffee.lovable.app/menu",
-              priceRange: "₹₹",
-              address: {
-                "@type": "PostalAddress",
-                streetAddress: loc.address,
-                addressLocality: "Kajipura, Kheda",
-                addressRegion: "Gujarat",
-                postalCode: "387120",
-                addressCountry: "IN",
-              },
-              openingHoursSpecification: [
-                {
-                  "@type": "OpeningHoursSpecification",
-                  dayOfWeek: [
-                    "Monday",
-                    "Tuesday",
-                    "Wednesday",
-                    "Thursday",
-                    "Friday",
-                    "Saturday",
-                    "Sunday",
-                  ],
-                  opens: "08:00",
-                  closes: "21:00",
-                },
-              ],
-            })),
-            {
-              "@type": "FAQPage",
-              mainEntity: STRINGS.en.faq.map((f) => ({
-                "@type": "Question",
-                name: f.q,
-                acceptedAnswer: { "@type": "Answer", text: f.a },
-              })),
-            },
-          ],
-        }),
-      },
-    ],
-  }),
-  component: HomePage,
-});
-
 
 const GALLERY = [
   "/images/hero-red-cakes.jpg",
@@ -124,9 +39,9 @@ const galleryAlt = (src: string) =>
     .replace(/\.[a-z]+$/, "")
     .replace(/-/g, " ")} at ${BRAND.name}`;
 
-function HomePage() {
+export default function HomePage() {
   const { t, lang, display } = useLang();
-  const navigate = useNavigate();
+  const router = useRouter();
   const still = STILL();
   const [intro, setIntro] = useState(() => !NOINTRO() && !homeIntroSeen());
 
@@ -231,7 +146,7 @@ function HomePage() {
             </h1>
             <div className="mt-8 flex flex-wrap gap-3 max-sm:mt-6 max-sm:w-full max-sm:flex-nowrap">
               <button
-                onClick={() => navigate({ to: "/menu" })}
+                onClick={() => router.push("/menu")}
                 className="btn-ink !border-paper !bg-paper !text-ink max-sm:flex-1 max-sm:justify-center max-sm:px-4 max-sm:text-center"
               >
                 {t.explore}
@@ -244,7 +159,6 @@ function HomePage() {
               </a>
             </div>
           </div>
-
 
           <div className="pointer-events-none absolute inset-x-0 bottom-0 flex justify-between px-16 pb-8 text-[11px] uppercase tracking-[0.2em] text-paper/70 max-lg:hidden">
             <span>{t.scroll}</span>
@@ -263,7 +177,7 @@ function HomePage() {
   function Mood() {
     const host = useRef<HTMLElement | null>(null);
     return (
-      <section ref={host} className="relative overflow-hidden py-[16vh]">
+      <section id="about" ref={host} className="relative overflow-hidden py-[16vh] scroll-mt-24">
         <CursorTrail hostRef={host} />
         <div className="container-x relative z-10 text-center">
           <p className="eyebrow">{t.moveCursor}</p>
@@ -273,7 +187,7 @@ function HomePage() {
             <span className="text-terra">{t.moodB}</span>
           </h2>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <button onClick={() => navigate({ to: "/menu" })} className="btn-ink">
+            <button onClick={() => router.push("/menu")} className="btn-ink">
               {t.openMenuBtn}
             </button>
             <button onClick={() => scrollToId("contact")} className="btn-line">
@@ -287,10 +201,10 @@ function HomePage() {
 
   function Favorites() {
     const tiles = [
-      { id: "coffee", label: { en: "Coffee", hi: "कॉफ़ी" }, img: "/images/latte.jpg" },
-      { id: "matcha", label: { en: "Matcha bar", hi: "माचा बार" }, img: "/images/matcha.jpg" },
-      { id: "breakfast", label: { en: "All-day brunch", hi: "ऑल-डे ब्रंच" }, img: "/images/brunch.jpg" },
-      { id: "pastry", label: { en: "Pastry", hi: "पेस्ट्री" }, img: "/images/pastry.jpg" },
+      { id: "coffee", label: { en: "Coffee", hi: "कॉफ़ी" }, img: "/images/cappuccino.jpg" },
+      { id: "signature-coffee", label: { en: "Signature Coffee", hi: "सिग्नेचर कॉफ़ी" }, img: "/images/spanish-latte.jpg" },
+      { id: "food", label: { en: "Food & Bites", hi: "फ़ूड और स्नैक्स" }, img: "/images/veg-burger.jpg" },
+      { id: "desserts", label: { en: "Desserts", hi: "डेसर्ट" }, img: "/images/tiramisu.jpg" },
     ];
     return (
       <section id="favorites" className="container-x scroll-mt-28 py-[10vh]">
@@ -298,7 +212,7 @@ function HomePage() {
           <h2 className={display} style={{ fontSize: "clamp(38px,5vw,74px)" }}>
             {t.favoriteTitle}
           </h2>
-          <button onClick={() => navigate({ to: "/menu" })} className="btn-line">
+          <button onClick={() => router.push("/menu")} className="btn-line">
             {t.fullMenu}
           </button>
         </div>
@@ -306,7 +220,7 @@ function HomePage() {
           {tiles.map((tile) => {
             const min = categoryMin(tile.id);
             return (
-              <button key={tile.id} onClick={() => navigate({ to: "/menu" })} className="group text-left">
+              <button key={tile.id} onClick={() => router.push("/menu")} className="group text-left">
                 <div className="photo-card relative aspect-[4/5]">
                   <img
                     src={tile.img}
@@ -355,19 +269,6 @@ function HomePage() {
           ))}
         </div>
 
-        <div className="mt-16 text-center">
-          {BRAND.instagramUrl ? (
-            <a href={BRAND.instagramUrl} className="btn-line">
-              <AtSign className="size-4" />
-              {BRAND.instagram}
-            </a>
-          ) : (
-            <span className="btn-line cursor-default" aria-disabled="true">
-              <AtSign className="size-4" />
-              {BRAND.instagram}
-            </span>
-          )}
-        </div>
         <div className="mt-8 grid grid-cols-6 gap-4 max-lg:grid-cols-3 max-sm:grid-cols-2">
           {GALLERY.slice(0, 6).map((src, i) => (
             <div key={"sq" + i} className="photo-card aspect-square">
@@ -499,3 +400,4 @@ function HomePage() {
     );
   }
 }
+

@@ -1,3 +1,5 @@
+"use client";
+
 import { useLang, LANGS, type Lang } from "@/lib/i18n";
 
 export function LangSwitch({ light = false }: { light?: boolean }) {

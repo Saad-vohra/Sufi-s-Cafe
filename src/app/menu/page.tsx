@@ -1,4 +1,6 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+"use client";
+
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { ArrowLeft, Phone } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
@@ -10,55 +12,9 @@ import { BRAND, money } from "@/lib/brand";
 import { useLang } from "@/lib/i18n";
 import { STILL, getScroll, onLenisScroll, scrollToY, useLenis } from "@/lib/scroll";
 
-export const Route = createFileRoute("/menu")({
-  head: () => ({
-    meta: [
-      { title: "Menu — Sufi's Cafe | coffee, matcha, brunch & pastry" },
-      {
-        name: "description",
-        content:
-          "The full Sufi's Cafe menu: filter and espresso coffee, a ceremonial matcha bar, all-day brunch, bowls, pastry and cold drinks.",
-      },
-      { property: "og:title", content: "The Sufi's Cafe menu" },
-      {
-        property: "og:description",
-        content: "Coffee, matcha, brunch, bowls and pastry — the full list, in two languages.",
-      },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://luna-coffee.lovable.app/menu" },
-    ],
-    links: [{ rel: "canonical", href: "https://luna-coffee.lovable.app/menu" }],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Menu",
-          name: `${BRAND.name} menu`,
-          url: "https://luna-coffee.lovable.app/menu",
-          hasMenuSection: MENU.map((section) => ({
-            "@type": "MenuSection",
-            name: section.label.en,
-            hasMenuItem: section.items.map((item) => ({
-              "@type": "MenuItem",
-              name: item.title.en,
-              offers: {
-                "@type": "Offer",
-                price: String(item.price),
-                priceCurrency: "INR",
-              },
-            })),
-          })),
-        }),
-      },
-    ],
-  }),
-  component: MenuPage,
-});
-
-function MenuPage() {
+export default function MenuPage() {
   const { t, lang, display } = useLang();
-  const navigate = useNavigate();
+  const router = useRouter();
   const still = STILL();
   const [active, setActive] = useState<string>("all");
   const [selectedItem, setSelectedItem] = useState<FullMenuItem | null>(null);
@@ -139,7 +95,7 @@ function MenuPage() {
       >
         <div className="container-x flex items-center justify-between gap-3 py-3 sm:gap-4 sm:py-4">
           <button
-            onClick={() => navigate({ to: "/" })}
+            onClick={() => router.push("/")}
             aria-label="Back to home"
             className="group flex min-w-0 items-center gap-3 sm:gap-4 py-1"
           >
@@ -233,6 +189,11 @@ function MenuPage() {
             >
               {cat.label[lang]}
             </motion.h2>
+            {cat.subtitle && (
+              <p className="mt-1 text-[14px] text-muted font-medium italic">
+                {cat.subtitle[lang]}
+              </p>
+            )}
             <div className="mt-5 grid grid-cols-1 gap-4 sm:mt-6 sm:grid-cols-2 sm:gap-5 xl:grid-cols-3">
               {cat.items.map((it, i) => (
                 <motion.div
@@ -358,3 +319,4 @@ function MenuCard({
     </article>
   );
 }
+

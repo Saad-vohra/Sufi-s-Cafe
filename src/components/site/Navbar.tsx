@@ -1,4 +1,6 @@
-import { useNavigate, useRouterState } from "@tanstack/react-router";
+"use client";
+
+import { usePathname, useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { Phone } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -8,12 +10,12 @@ import { setPendingScroll } from "@/lib/pendingScroll";
 import { getScroll, onLenisScroll, scrollToId } from "@/lib/scroll";
 import { LangSwitch } from "./LangSwitch";
 
-const SECTIONS = ["favorites", "gallery", "contact"] as const;
+const SECTIONS = ["about", "gallery", "contact", "favorites"] as const;
 
 export function Navbar() {
   const { t, display } = useLang();
-  const navigate = useNavigate();
-  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const router = useRouter();
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -31,21 +33,21 @@ export function Navbar() {
 
   const light = !scrolled && !open;
 
-  const go = (target: "menu" | "start" | (typeof SECTIONS)[number]) => {
+  const go = (target: "menu" | "home" | "start" | (typeof SECTIONS)[number]) => {
     const run = () => {
       if (target === "menu") {
-        navigate({ to: "/menu" });
+        router.push("/menu");
         return;
       }
-      if (target === "start") {
+      if (target === "home" || target === "start") {
         if (pathname === "/") window.scrollTo({ top: 0, behavior: "smooth" });
-        else navigate({ to: "/" });
+        else router.push("/");
         return;
       }
       if (pathname === "/") scrollToId(target);
       else {
         setPendingScroll(target);
-        navigate({ to: "/" });
+        router.push("/");
       }
     };
     if (open) {
@@ -54,12 +56,12 @@ export function Navbar() {
     } else run();
   };
 
-  const links: { id: "start" | "favorites" | "gallery" | "contact" | "menu"; label: string }[] = [
-    { id: "start", label: t.start },
-    { id: "favorites", label: t.favorites },
+  const links: { id: "home" | "menu" | "about" | "gallery" | "contact"; label: string }[] = [
+    { id: "home", label: t.home },
     { id: "menu", label: t.menu },
+    { id: "about", label: t.aboutUs },
     { id: "gallery", label: t.gallery },
-    { id: "contact", label: t.contact },
+    { id: "contact", label: t.contactUs },
   ];
 
   return (
@@ -128,21 +130,6 @@ export function Navbar() {
             </div>
           </button>
 
-          <nav className="hidden items-center gap-8 lg:flex">
-            {links
-              .filter((l) => l.id !== "start")
-              .map((l) => (
-                <button
-                  key={l.id}
-                  onClick={() => go(l.id)}
-                  className={`text-[14px] transition-colors ${light ? "text-paper/80 hover:text-paper" : "text-ink/75 hover:text-ink"
-                    }`}
-                >
-                  {l.label}
-                </button>
-              ))}
-          </nav>
-
           <div className="flex items-center gap-2 sm:gap-3">
             <a
               href={BRAND.tel}
@@ -151,12 +138,6 @@ export function Navbar() {
               <Phone className="size-4" />
               {BRAND.phone}
             </a>
-            <button
-              onClick={() => go("menu")}
-              className={`btn-ink hidden sm:inline-flex ${light ? "!border-paper !bg-paper !text-ink" : ""}`}
-            >
-              {t.viewMenu}
-            </button>
             <button
               aria-label="Menu"
               onClick={() => setOpen((o) => !o)}

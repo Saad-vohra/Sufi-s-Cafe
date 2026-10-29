@@ -16,6 +16,115 @@ export interface ItemDetailData {
 }
 
 const DETAILS_MAP: Record<string, ItemDetailData> = {
+  "Sufi's Special Coffee (House Blend)": {
+    ingredients: {
+      en: ["Single-origin Arabica beans", "Secret roast spices", "Steamed full cream milk", "Velvet cocoa dust"],
+      hi: ["सिंगल ओरिजिन अरेबिका बीन्स", "सीक्रेट मसाले", "गाढ़ा गर्म दूध", "कोको डस्ट"],
+    },
+    nutrition: {
+      calories: "190 kcal",
+      servingSize: "240 ml",
+      protein: "7 g",
+      carbs: "18 g",
+      fat: "9 g",
+    },
+    dietary: {
+      en: ["House Specialty", "Contains Dairy", "Vegetarian"],
+      hi: ["हाउस स्पेशलिटी", "डेयरी", "शाकाहारी"],
+    },
+    highlights: {
+      en: ["Our head barista's private reserve roasted to perfection with aromatic warm spices."],
+      hi: ["सूफ़ी कैफ़े का खास सीक्रेट रोस्ट, सुगंधित मसालों और मखमली झाग के साथ।"],
+    },
+  },
+
+  "Spanish Latte (Condensed Milk)": {
+    ingredients: {
+      en: ["Specialty Arabica espresso", "Sweet condensed milk", "Steamed whole milk", "Microfoam"],
+      hi: ["अरेबिका एस्प्रेसो", "कंडेंस्ड मिल्क", "गाढ़ा गर्म दूध", "माइक्रोफ़ोम"],
+    },
+    nutrition: {
+      calories: "230 kcal",
+      servingSize: "240 ml",
+      protein: "8 g",
+      carbs: "28 g",
+      fat: "9 g",
+    },
+    dietary: {
+      en: ["Contains Dairy", "Vegetarian", "Sweet & Rich"],
+      hi: ["डेयरी", "शाकाहारी", "मीठा और मखमली"],
+    },
+    highlights: {
+      en: ["Delightful layered contrast of bold espresso and velvety sweet condensed milk."],
+      hi: ["बोल्ड एस्प्रेसो और मीठे कंडेंस्ड मिल्क का शानदार संगम।"],
+    },
+  },
+
+  "Turkish Coffee": {
+    ingredients: {
+      en: ["Extra-fine ground Arabica beans", "Green cardamom pod", "Pure cane sugar", "Filtered spring water"],
+      hi: ["महीन पिसी अरेबिका कॉफ़ी", "हरी इलायची", "शुद्ध शक्कर", "फ़िल्टर्ड पानी"],
+    },
+    nutrition: {
+      calories: "45 kcal",
+      servingSize: "90 ml",
+      protein: "1 g",
+      carbs: "9 g",
+      fat: "0.5 g",
+    },
+    dietary: {
+      en: ["Vegan", "Dairy-Free", "Traditional Heritage"],
+      hi: ["शाकाहारी", "डेयरी-मुक्त", "पारंपरिक हेरिटेज"],
+    },
+    highlights: {
+      en: ["Slow simmered in an authentic copper cezve for a thick, velvety foam and deep aroma."],
+      hi: ["तांबे के पारंपरिक बर्तन (सेज़वे) में धीमी आंच पर पकी गाढ़ी और खुशबूदार कॉफ़ी।"],
+    },
+  },
+
+  "Sufi's Special Platter": {
+    ingredients: {
+      en: ["Mini grilled wraps", "Crispy loaded fries", "Cheese nachos with salsa", "Chipotle aioli", "Mint garlic dip"],
+      hi: ["मिनी वेज रैप", "क्रिस्पी लोडेड फ्राइज़", "चीज़ नाचोज़", "साल्सा", "स्पेशल डिप्स"],
+    },
+    nutrition: {
+      calories: "820 kcal",
+      servingSize: "550 g",
+      protein: "24 g",
+      carbs: "88 g",
+      fat: "42 g",
+    },
+    dietary: {
+      en: ["Vegetarian", "Contains Dairy", "Chef's Signature Sharing Platter"],
+      hi: ["शाकाहारी", "डेयरी", "शेफ़ का खास शेयरिंग प्लेटर"],
+    },
+    highlights: {
+      en: ["The ultimate cafe sharing board featuring all of our most-loved savory creations."],
+      hi: ["हमारे सबसे पसंदीदा स्नैक्स और स्पेशल सॉस का शानदार शेयरिंग प्लेटर।"],
+    },
+  },
+
+  "Lotus Biscoff Cheesecake": {
+    ingredients: {
+      en: ["Philadelphia cream cheese", "Lotus Biscoff spread", "Speculoos biscuit crumb", "Heavy cream", "Butter"],
+      hi: ["क्रीम चीज़", "लोटस बिस्कॉफ स्प्रेड", "बिस्कुट क्रस्ट", "हैवी क्रीम", "मक्खन"],
+    },
+    nutrition: {
+      calories: "520 kcal",
+      servingSize: "180 g",
+      protein: "8 g",
+      carbs: "52 g",
+      fat: "32 g",
+    },
+    dietary: {
+      en: ["Vegetarian", "Contains Dairy", "Contains Gluten"],
+      hi: ["शाकाहारी", "डेयरी", "ग्लूटन"],
+    },
+    highlights: {
+      en: ["Silky smooth baked cheesecake crowned with warm spiced caramelized speculoos."],
+      hi: ["कैरेमलाइज्ड लोटस बिस्कॉफ स्प्रेड से सजी बेहद मखमली और स्वादिष्ट चीज़केक।"],
+    },
+  },
   "Soft eggs on sourdough": {
     ingredients: {
       en: ["Sourdough bread", "fresh avocado", "eggs", "lemon oil", "salt", "pepper"],

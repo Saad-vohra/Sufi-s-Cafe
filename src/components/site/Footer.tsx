@@ -1,4 +1,6 @@
-import { useNavigate } from "@tanstack/react-router";
+"use client";
+
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { AtSign, Phone } from "lucide-react";
 import { BRAND } from "@/lib/brand";
@@ -8,14 +10,14 @@ import { STILL, scrollToId } from "@/lib/scroll";
 
 export function Footer() {
   const { lang, t, display } = useLang();
-  const navigate = useNavigate();
+  const router = useRouter();
   const still = STILL();
 
   const jump = (id: string) => {
     if (window.location.pathname === "/") scrollToId(id);
     else {
       setPendingScroll(id);
-      navigate({ to: "/" });
+      router.push("/");
     }
   };
 
@@ -72,14 +74,14 @@ export function Footer() {
           © {new Date().getFullYear()} {BRAND.name}
         </span>
         <div className="flex gap-5">
-          <button onClick={() => jump("favorites")} className="hover:text-paper">
-            {t.favorites}
+          <button onClick={() => jump("about")} className="hover:text-paper">
+            {t.aboutUs}
           </button>
-          <button onClick={() => navigate({ to: "/menu" })} className="hover:text-paper">
+          <button onClick={() => router.push("/menu")} className="hover:text-paper">
             {t.menu}
           </button>
           <button onClick={() => jump("contact")} className="hover:text-paper">
-            {t.contact}
+            {t.contactUs}
           </button>
         </div>
         <span>{t.photosNote}</span>

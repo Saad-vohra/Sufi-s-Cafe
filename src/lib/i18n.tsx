@@ -1,3 +1,5 @@
+"use client";
+
 import {
   createContext,
   useContext,
@@ -13,11 +15,13 @@ const KEY = "luna-lang";
 
 const en = {
   home: "Home",
-  favorites: "Favorites",
   menu: "Menu",
+  aboutUs: "About Us",
   gallery: "Gallery",
-  contact: "Contact",
-  start: "Start",
+  contactUs: "Contact Us",
+  favorites: "Favorites",
+  contact: "Contact Us",
+  start: "Home",
   viewMenu: "View menu",
   explore: "Explore the menu",
   book: "Book a table",
@@ -46,6 +50,7 @@ const en = {
   nutritionInfo: "Nutrition Information",
   allergensTitle: "Allergens",
   noAllergens: "No major allergens",
+  calories: "Calories",
   protein: "Protein",
   carbs: "Carbohydrates",
   fat: "Fat",
@@ -76,11 +81,13 @@ const en = {
 
 const hi: typeof en = {
   home: "होम",
-  favorites: "पसंदीदा",
   menu: "मेन्यू",
+  aboutUs: "हमारे बारे में",
   gallery: "गैलरी",
-  contact: "संपर्क",
-  start: "शुरू",
+  contactUs: "संपर्क करें",
+  favorites: "पसंदीदा",
+  contact: "संपर्क करें",
+  start: "होम",
   viewMenu: "मेन्यू देखें",
   explore: "मेन्यू देखिए",
   book: "टेबल बुक करें",
@@ -109,6 +116,7 @@ const hi: typeof en = {
   nutritionInfo: "पोषण संबंधी जानकारी",
   allergensTitle: "एलर्जी कारक",
   noAllergens: "कोई प्रमुख एलर्जी कारक नहीं",
+  calories: "कैलोरी",
   protein: "प्रोटीन",
   carbs: "कार्ब्स",
   fat: "फैट",
