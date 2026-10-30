@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { AtSign, Clock, MapPin, Phone, Plus } from "lucide-react";
+import { AtSign, Clock, Mail, MapPin, MessageCircle, Phone, Plus } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { CursorTrail } from "@/components/site/CursorTrail";
 import { Footer } from "@/components/site/Footer";
@@ -82,6 +82,7 @@ export default function HomePage() {
         <Mood />
         <Favorites />
         <Gallery />
+        <Events />
         <Contact />
         <Faq />
       </main>
@@ -270,6 +271,152 @@ export default function HomePage() {
               />
             </div>
           ))}
+        </div>
+      </section>
+    );
+  }
+
+  function Events() {
+    return (
+      <section id="events" className="container-x scroll-mt-28 py-[10vh]">
+        <div className="text-center">
+          <span className="inline-block rounded-full border border-ink/20 bg-paper/80 px-4 py-1 text-[12px] uppercase tracking-[0.18em] text-ink/80 backdrop-blur font-medium">
+            {t.eventsEyebrow}
+          </span>
+          <h2 className={`${display} mt-4 leading-[1.06]`} style={{ fontSize: "clamp(34px,4.5vw,68px)" }}>
+            {t.eventsTitle}
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-[15px] sm:text-[17px] text-muted leading-relaxed">
+            {t.eventsSubtitle}
+          </p>
+        </div>
+
+        {/* Top 2 Cards: Private Events & Catering */}
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Card 1: Private Events */}
+          <div className="flex flex-col justify-between rounded-[28px] border border-ink/10 bg-[#fbf9f4] p-6 sm:p-7 shadow-sm transition-all duration-300 hover:shadow-md">
+            <div>
+              <div className="aspect-[4/3] w-full overflow-hidden rounded-[20px] bg-paper">
+                <img
+                  src="/images/events-private.jpg"
+                  alt={`${t.eventsPrivateTitle} at ${BRAND.name}`}
+                  loading="lazy"
+                  decoding="async"
+                  className="h-full w-full object-cover transition-transform duration-700 hover:scale-[1.03]"
+                />
+              </div>
+              <h3 className={`${display} mt-6 text-[26px] sm:text-[30px]`}>
+                {t.eventsPrivateTitle}
+              </h3>
+              <p className="mt-2 text-[14px] sm:text-[15px] text-muted leading-relaxed">
+                {t.eventsPrivateDesc}
+              </p>
+            </div>
+          </div>
+
+          {/* Card 2: Catering */}
+          <div className="flex flex-col justify-between rounded-[28px] border border-ink/10 bg-[#fbf9f4] p-6 sm:p-7 shadow-sm transition-all duration-300 hover:shadow-md">
+            <div>
+              <div className="aspect-[4/3] w-full overflow-hidden rounded-[20px] bg-paper">
+                <img
+                  src="/images/events-catering.jpg"
+                  alt={`${t.eventsCateringTitle} by ${BRAND.name}`}
+                  loading="lazy"
+                  decoding="async"
+                  className="h-full w-full object-cover transition-transform duration-700 hover:scale-[1.03]"
+                />
+              </div>
+              <h3 className={`${display} mt-6 text-[26px] sm:text-[30px]`}>
+                {t.eventsCateringTitle}
+              </h3>
+              <p className="mt-2 text-[14px] sm:text-[15px] text-muted leading-relaxed">
+                {t.eventsCateringDesc}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Card: Custom Menus */}
+        <div className="mt-6 rounded-[28px] border border-ink/10 bg-[#fbf9f4] p-6 sm:p-8 shadow-sm transition-all duration-300 hover:shadow-md">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1.3fr] gap-8 items-center">
+            <div className="flex flex-col items-start">
+              <h3 className={`${display} text-[28px] sm:text-[34px]`}>
+                {t.eventsCustomTitle}
+              </h3>
+              <p className="mt-3 text-[14px] sm:text-[16px] text-muted leading-relaxed">
+                {t.eventsCustomDesc}
+              </p>
+              <div className="mt-6">
+                <a
+                  href="https://wa.me/917984342874?text=Hi%20Sufi's%20Cafe,%20I'd%20like%20to%20customize%20a%20menu%20for%20an%20event!"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-ink !bg-[#006241] !text-paper hover:!bg-[#1e3932] shadow-sm inline-flex items-center gap-2"
+                >
+                  <MessageCircle className="size-4" />
+                  {t.eventsGetInTouch}
+                </a>
+              </div>
+            </div>
+            <div className="aspect-[16/9] w-full overflow-hidden rounded-[20px] bg-paper">
+              <img
+                src="/images/events-custom-menus.jpg"
+                alt={`${t.eventsCustomTitle} at ${BRAND.name}`}
+                loading="lazy"
+                decoding="async"
+                className="h-full w-full object-cover transition-transform duration-700 hover:scale-[1.03]"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Speak with one of our experts */}
+        <div className="mt-8 rounded-[28px] border border-ink/10 bg-[#fbf9f4] p-6 sm:p-8 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <div>
+            <p className="text-[11px] uppercase tracking-[0.2em] text-[#006241] font-semibold">
+              {t.eventsExpertEyebrow}
+            </p>
+            <h3 className={`${display} mt-1 text-[24px] sm:text-[32px]`}>
+              {t.eventsExpertTitle}
+            </h3>
+          </div>
+          <div className="flex items-center gap-6 sm:gap-8 max-sm:w-full max-sm:justify-around">
+            <a
+              href="https://wa.me/917984342874?text=Hi%20Sufi's%20Cafe,%20I'd%20like%20to%20inquire%20about%20hosting%20an%20event!"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex flex-col items-center gap-2 text-center"
+            >
+              <div className="size-14 sm:size-16 rounded-full bg-[#1e3932] text-paper flex items-center justify-center shadow transition-all duration-300 group-hover:bg-[#006241] group-hover:scale-105">
+                <MessageCircle className="size-6 sm:size-7" />
+              </div>
+              <span className="text-[12px] sm:text-[13px] font-medium text-ink/80 group-hover:text-[#006241] transition-colors">
+                {t.eventsWhatsapp}
+              </span>
+            </a>
+            <a
+              href="mailto:contact@sufiscafe.com?subject=Event%20Inquiry%20-%20Sufi's%20Cafe"
+              className="group flex flex-col items-center gap-2 text-center"
+            >
+              <div className="size-14 sm:size-16 rounded-full bg-[#1e3932] text-paper flex items-center justify-center shadow transition-all duration-300 group-hover:bg-[#006241] group-hover:scale-105">
+                <Mail className="size-6 sm:size-7" />
+              </div>
+              <span className="text-[12px] sm:text-[13px] font-medium text-ink/80 group-hover:text-[#006241] transition-colors">
+                {t.eventsEmail}
+              </span>
+            </a>
+            <a
+              href={BRAND.tel}
+              className="group flex flex-col items-center gap-2 text-center"
+            >
+              <div className="size-14 sm:size-16 rounded-full bg-[#1e3932] text-paper flex items-center justify-center shadow transition-all duration-300 group-hover:bg-[#006241] group-hover:scale-105">
+                <Phone className="size-6 sm:size-7" />
+              </div>
+              <span className="text-[12px] sm:text-[13px] font-medium text-ink/80 group-hover:text-[#006241] transition-colors">
+                {t.eventsNumber}
+              </span>
+            </a>
+          </div>
         </div>
       </section>
     );
