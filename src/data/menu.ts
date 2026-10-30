@@ -104,18 +104,20 @@ const IMG = {
 
   // Food
   cucumber: "/images/cucumber-toast.jpg",
+  grilledsandwich: "/images/grilled-sandwich.jpg",
   cheese: "/images/grilled-cheese.jpg",
   paneer: "/images/paneer-toast.jpg",
   paneerwrap: "/images/paneer-tikka-wrap.jpg",
   periperiwrap: "/images/peri-peri-wrap.jpg",
   vegburger: "/images/veg-burger.jpg",
+  periperiburger: "/images/peri-peri-burger.jpg",
   loadedfries: "/images/loaded-fries.jpg",
   periperifries: "/images/peri-peri-fries.jpg",
   nachos: "/images/cheese-nachos.jpg",
   platter: "/images/brunch.jpg",
 
   // Desserts
-  brownie: "/images/hero-red-cakes.jpg",
+  brownie: "/images/chocolate-brownie.jpg",
   cheesecake: "/images/cheesecake.jpg",
   lavacake: "/images/chocolate-lava-cake.jpg",
   falooda: "/images/kulfi-falooda.jpg",
@@ -270,12 +272,12 @@ export const MENU: FullMenuCategory[] = [
     label: { en: "Food", hi: "फ़ूड" },
     items: [
       item("Veg Sandwich", "वेज सैंडविच", "Fresh cucumbers, ripe tomatoes, bell peppers and herb butter on sourdough", "ताज़ी सब्ज़ियाँ, खीरा, टमाटर और हर्ब बटर का फ्रेश सैंडविच", 430, { img: IMG.cucumber }),
-      item("Grilled Sandwich", "ग्रिल्ड सैंडविच", "Golden-grilled artisanal bread filled with seasonal vegetables and melted cheese", "क्रिस्पी ग्रिल्ड ब्रेड, सब्ज़ियाँ और पिघला हुआ चीज़", 470, { img: IMG.cheese }),
+      item("Grilled Sandwich", "ग्रिल्ड सैंडविच", "Golden-grilled artisanal bread filled with seasonal vegetables and melted cheese", "क्रिस्पी ग्रिल्ड ब्रेड, सब्ज़ियाँ और पिघला हुआ चीज़", 470, { img: IMG.grilledsandwich }),
       item("Cheese Sandwich", "चीज़ सैंडविच", "Three-cheese blend melted between thick toasted buttered bread", "तीन तरह के स्वादिष्ट चीज़ से भरपूर क्लासिक टोस्ट", 470, { img: IMG.cheese }),
       item("Paneer Tikka Wrap", "पनीर टिक्का रैप", "Tandoori marinated charred cottage cheese, mint chutney and crisp onions", "तंदूरी मसालों में भुना पनीर, पुदीना चटनी और लच्छा प्याज़", 510, { img: IMG.paneerwrap }),
       item("Peri Peri Wrap", "पेरी पेरी रैप", "Zesty spicy peri-peri spiced veggie strips and chipotle aioli rolled in flatbread", "तीखा पेरी पेरी वेजी रैप, चिपोटले सॉस के साथ", 510, { img: IMG.periperiwrap }),
       item("Veg Burger", "वेज बर्गर", "Crispy seasoned vegetable and herb patty with fresh lettuce, tomato and house mayo", "क्रिस्पी वेज पैटी, ताज़ी लेट्यूस और स्पेशल मेयोनेज़ बर्गर", 470, { img: IMG.vegburger }),
-      item("Peri Peri Burger", "पेरी पेरी बर्गर", "Spicy dusted crunchy patty topped with peri-peri cheese sauce and jalapeños", "तीखे पेरी पेरी मसाले, चीज़ सॉस और जलापेनो वाला बर्गर", 500, { img: IMG.vegburger }),
+      item("Peri Peri Burger", "पेरी पेरी बर्गर", "Spicy dusted crunchy patty topped with peri-peri cheese sauce and jalapeños", "तीखे पेरी पेरी मसाले, चीज़ सॉस और जलापेनो वाला बर्गर", 500, { img: IMG.periperiburger }),
       item("Loaded Fries", "लोडेड फ्राइज़", "Golden crispy potato fries smothered in warm cheese sauce, sour cream and scallions", "क्रिस्पी फ्रेंच फ्राइज़ पर पिघला हुआ चीज़ सॉस और हर्ब्स", 450, { img: IMG.loadedfries }),
       item("Peri Peri Fries", "पेरी पेरी फ्राइज़", "Crispy french fries tossed vigorously in African birds-eye peri-peri seasoning", "गरमा-गरम क्रिस्पी फ्राइज़, चटपटे पेरी पेरी मसाले में टॉस की हुई", 450, { img: IMG.periperifries }),
       item("Cheese Nachos", "चीज़ नाचोज़", "Corn tortilla chips layered with hot melted cheese sauce, salsa and jalapeños", "क्रिस्पी कॉर्न नाचोज़, साल्सा सॉस और मेल्टेड चीज़", 490, { img: IMG.nachos }),
