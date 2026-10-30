@@ -20,6 +20,7 @@ export interface FullMenuCategory {
 const IMG = {
   // Classic Coffee
   espresso: "/images/espresso-shot.jpg",
+  doubleespresso: "/images/double-espresso.jpg",
   flatwhite: "/images/flat-white.jpg",
   latte: "/images/latte.jpg",
   cappuccino: "/images/cappuccino.jpg",
@@ -29,6 +30,7 @@ const IMG = {
   hazelnutlatte: "/images/hazelnut-latte.jpg",
   vanillalatte: "/images/vanilla-latte.jpg",
   spanishlatte: "/images/spanish-latte.jpg",
+  cafeaulait: "/images/cafe-au-lait.jpg",
   batch: "/images/filter-batch.jpg",
   affogato: "/images/affogato.jpg",
 
@@ -130,7 +132,7 @@ export const MENU: FullMenuCategory[] = [
     subtitle: { en: "Made with premium arabica beans", hi: "प्रीमियम अरेबिका बीन्स से निर्मित" },
     items: [
       item("Espresso", "एस्प्रेसो", "Rich, concentrated shot brewed from 100% specialty Arabica beans", "100% अरेबिका बीन्स से बना समृद्ध और गाढ़ा एस्प्रेसो शॉट", 290, { img: IMG.espresso }),
-      item("Double Espresso", "डबल एस्प्रेसो", "Double extraction for a deep, bold body and golden crema", "गहरा और स्ट्रॉन्ग फ्लेवर, दोहरे एस्प्रेसो शॉट के साथ", 340, { img: IMG.espresso }),
+      item("Double Espresso", "डबल एस्प्रेसो", "Double extraction for a deep, bold body and golden crema", "गहरा और स्ट्रॉन्ग फ्लेवर, दोहरे एस्प्रेसो शॉट के साथ", 340, { img: IMG.doubleespresso }),
       item("Americano", "अमेरिकानो", "Double shot of espresso topped with hot water for a clean, nuanced cup", "एस्प्रेसो और गर्म पानी का संतुलित और ताज़गी भरा कप", 330, { img: IMG.americano }),
       item("Cappuccino", "कैपुचीनो", "Equal parts espresso, velvety steamed milk and rich microfoam", "एस्प्रेसो, गाढ़े गर्म दूध और रेशमी झाग का उत्तम मिश्रण", 380, { img: IMG.cappuccino }),
       item("Latte", "लाते", "Smooth espresso poured over gently textured silky steamed milk", "सिल्की गर्म दूध और स्मूद एस्प्रेसो का क्लासिक संगम", 380, { img: IMG.latte }),
@@ -140,7 +142,7 @@ export const MENU: FullMenuCategory[] = [
       item("Hazelnut Latte", "हेज़लनट लाते", "Fresh espresso and silky milk infused with toasted hazelnut notes", "टोस्टेड हेज़लनट के सुगन्धित स्वाद वाला क्रीमी लाते", 450, { img: IMG.hazelnutlatte }),
       item("Vanilla Latte", "वैनिला लाते", "Classic espresso and textured milk infused with pure vanilla bean syrup", "प्योर वैनिला बीन और स्मूद एस्प्रेसो का लोकप्रिय लाते", 450, { img: IMG.vanillalatte }),
       item("Spanish Latte (Condensed Milk)", "स्पैनिश लाते", "Rich espresso layered over sweet condensed milk and textured milk", "कंडेंस्ड मिल्क और एस्प्रेसो का अनोखा क्रीमी और मीठा स्वाद", 460, { img: IMG.spanishlatte }),
-      item("Cafe Au Lait", "कैफ़े ओ ले", "French style brewed drip coffee balanced with equal parts steamed milk", "पारंपरिक फ़्रेंच शैली में ब्रू की गई कॉफ़ी और गर्म दूध", 420, { img: IMG.batch }),
+      item("Cafe Au Lait", "कैफ़े ओ ले", "French style brewed drip coffee balanced with equal parts steamed milk", "पारंपरिक फ़्रेंच शैली में ब्रू की गई कॉफ़ी और गर्म दूध", 420, { img: IMG.cafeaulait }),
       item("Affogato", "अफ़ोगाटो", "A scoop of artisanal vanilla ice cream drowned in hot, bold espresso", "वैनिला आइसक्रीम के स्कूप पर डाला गया गरमा-गरम एस्प्रेसो", 520, { img: IMG.affogato }),
     ],
   },
