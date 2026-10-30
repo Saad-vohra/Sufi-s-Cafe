@@ -201,7 +201,7 @@ export default function HomePage() {
 
   function Favorites() {
     const tiles = [
-      { id: "coffee", label: { en: "Coffee", hi: "कॉफ़ी" }, img: "/images/cappuccino.jpg" },
+      { id: "coffee", label: { en: "Coffee", hi: "कॉफ़ी" }, img: "/images/latte.jpg" },
       { id: "signature-coffee", label: { en: "Signature Coffee", hi: "सिग्नेचर कॉफ़ी" }, img: "/images/spanish-latte.jpg" },
       { id: "food", label: { en: "Food & Bites", hi: "फ़ूड और स्नैक्स" }, img: "/images/veg-burger.jpg" },
       { id: "desserts", label: { en: "Desserts", hi: "डेसर्ट" }, img: "/images/tiramisu.jpg" },
