@@ -18,18 +18,18 @@ import { NOINTRO, STILL, scrollToId, useLenis } from "@/lib/scroll";
 const HERO_VIDEO = "/videos/hero.mp4";
 
 const GALLERY = [
-  "/images/hero-red-cakes.jpg",
-  "/images/eggs-sourdough.jpg",
-  "/images/croissant.jpg",
-  "/images/pancakes.jpg",
+  "/images/sufi-special-coffee.jpg",
+  "/images/veg-burger.jpg",
+  "/images/berry-bliss.jpg",
+  "/images/tiramisu-dessert.jpg",
   "/images/matcha.jpg",
-  "/images/shakshuka.jpg",
+  "/images/grilled-cheese.jpg",
   "/images/cheesecake.jpg",
   "/images/iced-coffee.jpg",
-  "/images/grain-bowl.jpg",
-  "/images/pasta.jpg",
-  "/images/interior.jpg",
-  "/images/venue.jpg",
+  "/images/kitkat-shake.jpg",
+  "/images/loaded-fries.jpg",
+  "/images/masala-chai.jpg",
+  "/images/sufi-special-dessert.jpg",
 ];
 
 const galleryAlt = (src: string) =>
@@ -207,7 +207,7 @@ export default function HomePage() {
       { id: "coffee", label: { en: "Coffee", hi: "कॉफ़ी" }, img: "/images/latte.jpg" },
       { id: "signature-coffee", label: { en: "Signature Coffee", hi: "सिग्नेचर कॉफ़ी" }, img: "/images/spanish-latte.jpg" },
       { id: "food", label: { en: "Food & Bites", hi: "फ़ूड और स्नैक्स" }, img: "/images/veg-burger.jpg" },
-      { id: "desserts", label: { en: "Desserts", hi: "डेसर्ट" }, img: "/images/tiramisu.jpg" },
+      { id: "desserts", label: { en: "Desserts", hi: "डेसर्ट" }, img: "/images/tiramisu-dessert.jpg" },
     ];
     return (
       <section id="favorites" className="container-x scroll-mt-28 py-[10vh]">

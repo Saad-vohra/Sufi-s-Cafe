@@ -5,16 +5,18 @@ import { useEffect, useRef, useState } from "react";
 import { STILL, params } from "@/lib/scroll";
 
 const SPRITES = [
-  "/images/pancakes.jpg",
-  "/images/croissant.jpg",
-  "/images/shakshuka.jpg",
-  "/images/cheesecake.jpg",
-  "/images/avocado.jpg",
-  "/images/pistachio-roll.jpg",
-  "/images/grain-bowl.jpg",
-  "/images/cardamom-bun.jpg",
-  "/images/eggs-sourdough.jpg",
+  "/images/sufi-special-coffee.jpg",
+  "/images/veg-burger.jpg",
+  "/images/blue-ocean.jpg",
+  "/images/tiramisu-dessert.jpg",
+  "/images/kitkat-shake.jpg",
   "/images/grilled-cheese.jpg",
+  "/images/iced-americano.jpg",
+  "/images/sufi-special-dessert.jpg",
+  "/images/masala-chai.jpg",
+  "/images/loaded-fries.jpg",
+  "/images/pina-colada.jpg",
+  "/images/biscoff-shake.jpg",
 ];
 
 
