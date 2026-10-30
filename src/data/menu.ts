@@ -63,7 +63,11 @@ const IMG = {
   tiramisu: "/images/tiramisu-latte.jpg",
 
   // Add-ons
+  extrashot: "/images/extra-shot.jpg",
+  syrup: "/images/flavour-syrup.jpg",
   oat: "/images/oat-milk.jpg",
+  icecream: "/images/ice-cream-scoop.jpg",
+  whippedcream: "/images/whipped-cream.jpg",
 
   // Premium Brews
   pourover: "/images/pourover.jpg",
@@ -194,12 +198,12 @@ export const MENU: FullMenuCategory[] = [
     id: "add-ons",
     label: { en: "Add-Ons", hi: "ऐड-ऑन्स" },
     items: [
-      item("Extra Shot", "एक्स्ट्रा शॉट", "Add an extra shot of fresh specialty Arabica espresso", "ताज़ा अरेबिका एस्प्रेसो का एक और अतिरिक्त शॉट", 90, { img: IMG.espresso }),
-      item("Flavour Syrup", "फ्लेवर सिरप", "Vanilla, Caramel, Hazelnut, Pistachio, Rose, or Irish cream syrup", "वैनिला, कारमेल, हेज़लनट, पिस्ता, रोज़ या आयरिश सिरप", 90),
+      item("Extra Shot", "एक्स्ट्रा शॉट", "Add an extra shot of fresh specialty Arabica espresso", "ताज़ा अरेबिका एस्प्रेसो का एक और अतिरिक्त शॉट", 90, { img: IMG.extrashot }),
+      item("Flavour Syrup", "फ्लेवर सिरप", "Vanilla, Caramel, Hazelnut, Pistachio, Rose, or Irish cream syrup", "वैनिला, कारमेल, हेज़लनट, पिस्ता, रोज़ या आयरिश सिरप", 90, { img: IMG.syrup }),
       item("Oat Milk", "ओट मिल्क", "Creamy plant-based barista oat milk substitution", "स्वादिष्ट प्लांट-बेस्ड बरिस्ता ओट मिल्क", 120, { img: IMG.oat }),
       item("Almond Milk", "आलमंड मिल्क", "Lightly nutty, unsweetened barista almond milk substitution", "पौष्टिक और लो-कैलोरी बादाम दूध", 120, { img: IMG.oat }),
-      item("Ice Cream", "आइसक्रीम स्कूप", "Rich artisanal gourmet vanilla ice cream scoop", "गॉरमे वैनिला आइसक्रीम का स्वादिष्ट स्कूप", 150),
-      item("Whipped Cream", "ह्विप्ड क्रीम", "Freshly whipped sweet dairy cream dollop", "ताज़ी बनी गाढ़ी और मीठी ह्विप्ड क्रीम", 100),
+      item("Ice Cream", "आइसक्रीम स्कूप", "Rich artisanal gourmet vanilla ice cream scoop", "गॉरमे वैनिला आइसक्रीम का स्वादिष्ट स्कूप", 150, { img: IMG.icecream }),
+      item("Whipped Cream", "ह्विप्ड क्रीम", "Freshly whipped sweet dairy cream dollop", "ताज़ी बनी गाढ़ी और मीठी ह्विप्ड क्रीम", 100, { img: IMG.whippedcream }),
     ],
   },
   {
