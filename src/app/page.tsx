@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { AtSign, Clock, Coffee, Heart, MapPin, Phone, Plus, Smile, Sparkles, Utensils, Wifi } from "lucide-react";
+import { AtSign, Clock, MapPin, Phone, Plus } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { CursorTrail } from "@/components/site/CursorTrail";
 import { Footer } from "@/components/site/Footer";
@@ -79,7 +79,7 @@ export default function HomePage() {
 
       <main className="relative z-10">
         <Hero />
-        <About />
+        <Mood />
         <Favorites />
         <Gallery />
         <Contact />
@@ -174,222 +174,28 @@ export default function HomePage() {
     );
   }
 
-  function About() {
+  function Mood() {
     const host = useRef<HTMLElement | null>(null);
-
     return (
-      <section id="about" ref={host} className="relative overflow-hidden py-[12vh] scroll-mt-24">
+      <section id="mood" ref={host} className="relative overflow-hidden py-[16vh] scroll-mt-24">
         <CursorTrail hostRef={host} />
-
-        <div className="container-x relative z-10">
-          {/* Top Header Badge & Slogans */}
-          <div className="mx-auto mb-16 max-w-3xl text-center">
-            <div className="inline-flex items-center gap-2 rounded-full border border-[rgba(0,98,65,0.2)] bg-white/75 px-4 py-1.5 shadow-sm backdrop-blur-sm">
-              <Sparkles className="size-3.5 text-[#006241]" />
-              <span className="eyebrow !text-[#006241] !tracking-[0.2em]">{BRAND.name} · Est. 2026</span>
-            </div>
-
-            <h2 className={`${display} mt-6 leading-[1.05] text-[#1e3932]`} style={{ fontSize: "clamp(36px,5.5vw,72px)" }}>
-              {lang === "en" ? (
-                <>
-                  Coffee. Comfort. <span className="text-[#006241]">Connection.</span>
-                </>
-              ) : (
-                <>
-                  कॉफ़ी। सुकून। <span className="text-[#006241]">सद्भाव।</span>
-                </>
-              )}
-            </h2>
-
-            <p className="mt-4 font-serif text-lg italic text-[#006241]/90 sm:text-xl">
-              {lang === "en"
-                ? "“Let the heart find peace in every sip.”"
-                : "“हर घूंट में दिल को सुकून और रूह को शांति मिले।”"}
-            </p>
-          </div>
-
-          {/* Main Story & Visual Presentation */}
-          <div className="grid grid-cols-12 items-center gap-8 lg:gap-12">
-            {/* Left Column: Cafe Philosophy & Details */}
-            <div className="col-span-12 flex flex-col justify-center lg:col-span-6">
-              <div className="mb-6 flex items-center gap-4">
-                <div className="relative size-16 shrink-0 overflow-hidden rounded-full border-2 border-[#006241]/30 bg-white p-1 shadow-md">
-                  <img src="/images/logo.png" alt="Sufi's Cafe Logo" className="size-full object-contain" />
-                </div>
-                <div>
-                  <h3 className={`${display} text-2xl text-[#1e3932]`}>Sufi&apos;s Cafe &amp; Bakery</h3>
-                  <p className="text-xs uppercase tracking-wider text-muted">Kajipura · Kheda · Gujarat</p>
-                </div>
-              </div>
-
-              <div className="space-y-4 text-[16px] leading-relaxed text-[#2c3e35]">
-                {lang === "en" ? (
-                  <>
-                    <p>
-                      Welcome to <strong>Sufi&apos;s Cafe</strong>, an oasis of serenity nestled in Kajipura, Kheda. Inspired by the timeless Sufi ethos of warmth, mindfulness, and pure hospitality, our cafe is thoughtfully crafted as a sanctuary where every visitor is embraced like family.
-                    </p>
-                    <p>
-                      From slow-brewed single-origin Arabica pour-overs and authentic copper-simmered Turkish coffee to velvety Spanish lattes, soothing teas, and gourmet bites, we curate every recipe to bring harmony to your day.
-                    </p>
-                  </>
-                ) : (
-                  <>
-                    <p>
-                      <strong>सूफ़ी कैफ़े</strong> में आपका स्वागत है — काजीपुरा, खेड़ा (गुजरात) में बसा एक शांत और आत्मीय कोना। सूफ़ी परंपरा की सादगी, प्रेम और मेहमाननवाज़ी से प्रेरित होकर, हमने एक ऐसा कैफ़े बनाया है जहाँ हर मेहमान को घर जैसा सुकून मिले।
-                    </p>
-                    <p>
-                      100% अरेबिका बीन्स से बनी ताज़ा कॉफ़ी, पारंपरिक तांबे के बर्तन में पकी तुर्की कॉफ़ी, स्वादिष्ट स्पैनिश लाते, रिफ्रेशिंग ड्रिंक्स और शेफ़ के खास स्नैक्स — यहाँ हर चीज़ दिल से बनाई जाती है।
-                    </p>
-                  </>
-                )}
-              </div>
-
-              {/* Quote Pill Card */}
-              <div className="mt-6 rounded-2xl border border-[rgba(0,98,65,0.2)] bg-gradient-to-r from-emerald-50/80 to-amber-50/60 p-5 shadow-sm">
-                <div className="flex items-start gap-3">
-                  <span className="text-3xl leading-none text-[#006241]">“</span>
-                  <div>
-                    <p className="font-serif text-base italic text-[#1e3932] sm:text-lg">
-                      {lang === "en"
-                        ? "Where every sip brings peace to your soul."
-                        : "जहाँ हर घूंट आपकी आत्मा को शांति और ताज़गी प्रदान करता है।"}
-                    </p>
-                    <p className="mt-1 text-xs uppercase tracking-wider text-muted">
-                      {lang === "en" ? "— The Sufi's Cafe Promise" : "— सूफ़ी कैफ़े का वादा"}
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Action buttons */}
-              <div className="mt-8 flex flex-wrap gap-3">
-                <button onClick={() => router.push("/menu")} className="btn-ink">
-                  {t.explore}
-                </button>
-                <button onClick={() => scrollToId("contact")} className="btn-line">
-                  {t.findUs}
-                </button>
-              </div>
-            </div>
-
-            {/* Right Column: Visual Showcase */}
-            <div className="relative col-span-12 lg:col-span-6">
-              <div className="relative mx-auto max-w-lg lg:max-w-none">
-                {/* Main Ambient Cafe Photo */}
-                <div className="group relative aspect-[4/3] overflow-hidden rounded-[32px] border border-white/60 bg-[#1e3932]/10 shadow-2xl">
-                  <img
-                    src="/images/about-cafe.jpg"
-                    alt="Sufi's Cafe Interior Ambiance"
-                    className="size-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                  <div className="absolute bottom-5 left-5 right-5 text-white">
-                    <p className="text-xs uppercase tracking-widest text-[#d4e9e2]">Fresh Brew · Cozy Seating</p>
-                    <p className="font-serif text-lg font-medium">Coffee, Comfort &amp; Community</p>
-                  </div>
-                </div>
-
-                {/* Overlapping Secondary Photo Card */}
-                <div className="absolute -bottom-8 -left-6 hidden aspect-square w-48 overflow-hidden rounded-2xl border-4 border-white bg-black shadow-xl sm:block sm:w-56">
-                  <img
-                    src="/images/turkish-coffee.jpg"
-                    alt="Artisanal Brew at Sufi's Cafe"
-                    className="size-full object-cover"
-                  />
-                  <div className="absolute bottom-2 left-2 right-2 rounded-lg bg-black/60 px-2 py-1 text-center backdrop-blur-sm">
-                    <span className="text-[11px] font-semibold uppercase tracking-wider text-paper">
-                      Signature Brews
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Three Pillars: Good Food, Good Mood, Good Vibes */}
-          <div className="mt-24 border-t border-[rgba(0,98,65,0.14)] pt-12">
-            <div className="mb-10 text-center">
-              <p className="eyebrow !text-[#006241]">OUR DAILY PHILOSOPHY</p>
-              <h3 className={`${display} mt-2 text-3xl text-[#1e3932] sm:text-4xl`}>
-                Good Food · Good Mood · Good Vibes
-              </h3>
-            </div>
-
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-              {/* Pillar 1 */}
-              <div className="group rounded-3xl border border-[rgba(0,98,65,0.12)] bg-white/75 p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
-                <div className="mb-5 flex size-12 items-center justify-center rounded-2xl bg-emerald-100/70 text-[#006241]">
-                  <Utensils className="size-6" />
-                </div>
-                <h4 className={`${display} mb-2 text-2xl text-[#1e3932]`}>
-                  {lang === "en" ? "Good Food" : "स्वादिष्ट भोजन"}
-                </h4>
-                <p className="text-[14px] leading-relaxed text-[#2c3e35]">
-                  {lang === "en"
-                    ? "Wholesome sandwiches, loaded peri-peri fries, paneer tikka wraps, and decadent desserts made fresh daily."
-                    : "ताज़े ग्रिल्ड सैंडविच, लोडेड फ्राइज़, पनीर टिक्का रैप और घर जैसी मिठास वाले लज़ीज़ डेज़र्ट।"}
-                </p>
-              </div>
-
-              {/* Pillar 2 */}
-              <div className="group rounded-3xl border border-[rgba(0,98,65,0.12)] bg-white/75 p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
-                <div className="mb-5 flex size-12 items-center justify-center rounded-2xl bg-emerald-100/70 text-[#006241]">
-                  <Smile className="size-6" />
-                </div>
-                <h4 className={`${display} mb-2 text-2xl text-[#1e3932]`}>
-                  {lang === "en" ? "Good Mood" : "सुखद माहौल"}
-                </h4>
-                <p className="text-[14px] leading-relaxed text-[#2c3e35]">
-                  {lang === "en"
-                    ? "Warm ambient lighting, soothing music, fast free Wi-Fi, and plush corners for work, study, or relaxed conversations."
-                    : "धीमी सुकून भरी रोशनी, आरामदायक बैठक, फ़्री हाई-स्पीड वाई-फ़ाई और पढ़ाई या बातचीत के लिए शांत माहौल।"}
-                </p>
-              </div>
-
-              {/* Pillar 3 */}
-              <div className="group rounded-3xl border border-[rgba(0,98,65,0.12)] bg-white/75 p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
-                <div className="mb-5 flex size-12 items-center justify-center rounded-2xl bg-emerald-100/70 text-[#006241]">
-                  <Heart className="size-6" />
-                </div>
-                <h4 className={`${display} mb-2 text-2xl text-[#1e3932]`}>
-                  {lang === "en" ? "Good Vibes" : "पॉजिटिव वाइब्स"}
-                </h4>
-                <p className="text-[14px] leading-relaxed text-[#2c3e35]">
-                  {lang === "en"
-                    ? "Rooted in Sufi hospitality and genuine connection. We don't just serve coffee — we deliver happiness."
-                    : "सूफ़ी तहज़ीब और अपनेपन से भरा सत्कार। हम सिर्फ़ कॉफ़ी नहीं परोसते — हम खुशियाँ बाँटते हैं।"}
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Community Badges Banner */}
-          <div className="mt-12 rounded-3xl bg-[#1e3932] p-6 text-paper shadow-xl sm:p-8">
-            <div className="flex flex-wrap items-center justify-between gap-6">
-              <div className="space-y-1">
-                <p className="eyebrow !text-[#d4e9e2] !tracking-[0.2em]">
-                  {lang === "en" ? "WE DELIVER HAPPINESS" : "हम खुशियाँ बाँटते हैं"}
-                </p>
-                <h4 className={`${display} text-2xl text-white sm:text-3xl`}>
-                  {lang === "en" ? "Thank You for Supporting Local." : "स्थानीय व्यापार को समर्थन देने के लिए धन्यवाद।"}
-                </h4>
-                <p className="text-sm text-paper/80">
-                  {BRAND.locations[0].address}
-                </p>
-              </div>
-
-              <div className="flex flex-wrap items-center gap-3">
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-4 py-2 text-xs uppercase tracking-wider backdrop-blur-sm">
-                  <Wifi className="size-3.5 text-[#d4e9e2]" /> Free Wi-Fi
-                </span>
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-4 py-2 text-xs uppercase tracking-wider backdrop-blur-sm">
-                  <Coffee className="size-3.5 text-[#d4e9e2]" /> 100% Arabica
-                </span>
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-white text-[#1e3932] px-4 py-2 text-xs font-semibold uppercase tracking-wider shadow-sm">
-                  <AtSign className="size-3.5" /> {BRAND.instagram}
-                </span>
-              </div>
-            </div>
+        <div className="container-x relative z-10 text-center">
+          <p className="eyebrow">{t.moveCursor}</p>
+          <h2 className={`${display} mt-4 leading-[1.02]`} style={{ fontSize: "clamp(38px,5vw,74px)" }}>
+            {t.moodA}
+            <br />
+            <span className="text-terra">{t.moodB}</span>
+          </h2>
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
+            <button onClick={() => router.push("/menu")} className="btn-ink">
+              {t.openMenuBtn}
+            </button>
+            <button onClick={() => router.push("/about")} className="btn-line">
+              {t.aboutUs}
+            </button>
+            <button onClick={() => scrollToId("contact")} className="btn-line">
+              {t.findUs}
+            </button>
           </div>
         </div>
       </section>

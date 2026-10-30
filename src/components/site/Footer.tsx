@@ -74,7 +74,7 @@ export function Footer() {
           © {new Date().getFullYear()} {BRAND.name}
         </span>
         <div className="flex gap-5">
-          <button onClick={() => jump("about")} className="hover:text-paper">
+          <button onClick={() => router.push("/about")} className="hover:text-paper">
             {t.aboutUs}
           </button>
           <button onClick={() => router.push("/menu")} className="hover:text-paper">

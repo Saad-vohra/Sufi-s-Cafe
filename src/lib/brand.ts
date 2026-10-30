@@ -11,7 +11,7 @@ export const BRAND = {
   phone: "+91 79843 42874",
   tel: "tel:+917984342874",
   hours: "08:00 – 21:00",
-  instagram: "@sufis.cafe",
+  instagram: "@sufis_cafe",
   instagramUrl: null as string | null, // null → rendered as text, not a link
   currency: "₹",
   rating: null as number | null,

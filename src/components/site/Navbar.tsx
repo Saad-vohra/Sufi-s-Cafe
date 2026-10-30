@@ -10,7 +10,7 @@ import { setPendingScroll } from "@/lib/pendingScroll";
 import { getScroll, onLenisScroll, scrollToId } from "@/lib/scroll";
 import { LangSwitch } from "./LangSwitch";
 
-const SECTIONS = ["about", "gallery", "contact", "favorites"] as const;
+const SECTIONS = ["gallery", "contact", "favorites"] as const;
 
 export function Navbar() {
   const { t, display } = useLang();
@@ -33,10 +33,14 @@ export function Navbar() {
 
   const light = !scrolled && !open;
 
-  const go = (target: "menu" | "home" | "start" | (typeof SECTIONS)[number]) => {
+  const go = (target: "menu" | "about" | "home" | "start" | (typeof SECTIONS)[number]) => {
     const run = () => {
       if (target === "menu") {
         router.push("/menu");
+        return;
+      }
+      if (target === "about") {
+        router.push("/about");
         return;
       }
       if (target === "home" || target === "start") {
