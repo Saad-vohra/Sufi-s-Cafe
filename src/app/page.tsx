@@ -18,18 +18,18 @@ import { NOINTRO, STILL, scrollToId, useLenis } from "@/lib/scroll";
 const HERO_VIDEO = "/videos/hero.mp4";
 
 const GALLERY = [
-  "/images/sufi-special-coffee.jpg",
+  "/images/caramel-iced-latte.jpg",
   "/images/veg-burger.jpg",
   "/images/berry-bliss.jpg",
   "/images/tiramisu-dessert.jpg",
-  "/images/matcha.jpg",
-  "/images/grilled-cheese.jpg",
+  "/images/latte.jpg",
+  "/images/sufi-special-dessert.jpg",
   "/images/cheesecake.jpg",
   "/images/iced-coffee.jpg",
   "/images/kitkat-shake.jpg",
   "/images/loaded-fries.jpg",
   "/images/masala-chai.jpg",
-  "/images/sufi-special-dessert.jpg",
+  "/images/hot-matcha.jpg",
 ];
 
 const galleryAlt = (src: string) =>
@@ -268,14 +268,6 @@ export default function HomePage() {
                 decoding="async"
                 className="h-full w-full object-cover transition-transform duration-700 hover:scale-[1.06]"
               />
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-8 grid grid-cols-6 gap-4 max-lg:grid-cols-3 max-sm:grid-cols-2">
-          {GALLERY.slice(0, 6).map((src, i) => (
-            <div key={"sq" + i} className="photo-card aspect-square">
-              <img src={src} alt={galleryAlt(src)} loading="lazy" decoding="async" className="h-full w-full object-cover" />
             </div>
           ))}
         </div>
