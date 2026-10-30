@@ -2,7 +2,7 @@
 
 import { usePathname, useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { Clock, Phone } from "lucide-react";
+import { ArrowLeft, Clock, Phone } from "lucide-react";
 import { useEffect, useState } from "react";
 import { BRAND } from "@/lib/brand";
 import { useLang } from "@/lib/i18n";
@@ -12,7 +12,15 @@ import { LangSwitch } from "./LangSwitch";
 
 const SECTIONS = ["gallery", "contact", "favorites"] as const;
 
-export function Navbar() {
+export function Navbar({
+  sticky = false,
+  showBack = false,
+  headerRef,
+}: {
+  sticky?: boolean;
+  showBack?: boolean;
+  headerRef?: React.Ref<HTMLElement>;
+} = {}) {
   const { t, display } = useLang();
   const router = useRouter();
   const pathname = usePathname();
@@ -31,7 +39,7 @@ export function Navbar() {
     };
   }, [open]);
 
-  const light = !scrolled && !open;
+  const light = !sticky && pathname === "/" && !scrolled && !open;
 
   const go = (target: "menu" | "about" | "home" | "start" | (typeof SECTIONS)[number]) => {
     const run = () => {
@@ -68,12 +76,22 @@ export function Navbar() {
     { id: "contact", label: t.contactUs },
   ];
 
+  const isSubpage = showBack || (pathname && pathname !== "/");
+
   return (
-    <header className="fixed inset-x-0 top-0 z-[60]">
-      {/* overlay lives inside the header so the burger stays clickable above it */}
+    <header
+      ref={headerRef as never}
+      className={
+        sticky
+          ? "sticky top-0 z-[60] border-b border-[rgba(0,98,65,0.1)] bg-paper/90 backdrop-blur-md"
+          : "fixed inset-x-0 top-0 z-[60]"
+      }
+    >
+      {/* Overlay Drawer Menu */}
       <div
-        className={`fixed inset-0 z-[10] bg-[#1e3932] transition-opacity duration-300 ${open ? "opacity-100" : "pointer-events-none opacity-0"
-          }`}
+        className={`fixed inset-0 z-[10] bg-[#1e3932] transition-opacity duration-300 ${
+          open ? "opacity-100" : "pointer-events-none opacity-0"
+        }`}
       >
         <div className="container-x flex h-full flex-col justify-center gap-2 pt-24 pb-14">
           {links.map((l, i) => (
@@ -90,6 +108,7 @@ export function Navbar() {
               </span>
             </motion.button>
           ))}
+          {/* Language Switcher inside Navbar Drawer */}
           <div className="mt-10 flex items-center gap-4">
             <span className="eyebrow !text-paper/85">{t.language}</span>
             <LangSwitch light />
@@ -102,57 +121,84 @@ export function Navbar() {
         </div>
       </div>
 
+      {/* Top Header Bar */}
       <div
-        className={`relative z-[20] transition-all duration-300 ${scrolled && !open
-          ? "bg-paper/90 shadow-[0_1px_0_rgba(0,98,65,.12)] backdrop-blur-md"
-          : "bg-transparent"
-          }`}
+        className={`relative z-[20] transition-all duration-300 ${
+          !sticky && scrolled && !open
+            ? "bg-paper/90 shadow-[0_1px_0_rgba(0,98,65,.12)] backdrop-blur-md"
+            : !sticky
+              ? "bg-transparent"
+              : ""
+        }`}
       >
         <div className="container-x flex items-center justify-between px-3 py-2.5 sm:px-6 sm:py-3 lg:px-8">
-          <button onClick={() => go("start")} className="group flex items-center gap-2.5 sm:gap-3.5 py-0.5">
-            <img
-              src="/images/logo.png"
-              alt="Sufi's Cafe Logo"
-              className={`size-12 sm:size-14 md:size-16 rounded-full object-contain drop-shadow-md transition-transform duration-300 group-hover:scale-105 shrink-0 ${light ? "ring-2 ring-paper/40" : "ring-1 ring-[rgba(0,98,65,0.2)]"
+          {/* Left Partition: Logo + Name */}
+          <div className="flex items-center gap-2.5 sm:gap-3.5">
+            {isSubpage && (
+              <button
+                onClick={() => router.push("/")}
+                aria-label="Back to home"
+                className="group flex size-9 items-center justify-center rounded-full border border-[rgba(0,98,65,0.18)] bg-white/75 text-ink transition-all hover:bg-white hover:shadow-xs"
+              >
+                <ArrowLeft className="size-4.5 transition-transform group-hover:-translate-x-0.5" />
+              </button>
+            )}
+            <button
+              onClick={() => go("start")}
+              className="group flex items-center gap-2.5 sm:gap-3.5 py-0.5 text-left"
+            >
+              <img
+                src="/images/logo.png"
+                alt="Sufi's Cafe Logo"
+                className={`size-11 sm:size-13 md:size-15 rounded-full object-contain drop-shadow-md transition-transform duration-300 group-hover:scale-105 shrink-0 ${
+                  light ? "ring-2 ring-paper/40" : "ring-1 ring-[rgba(0,98,65,0.2)]"
                 }`}
-            />
-            <div className={`h-8 sm:h-9 w-px ${light || open ? "bg-paper/40" : "bg-ink/25"}`} />
-            <div className="flex flex-col text-left">
-              <span
-                className={`font-serif tracking-[0.16em] font-bold leading-none ${light || open ? "text-paper" : "text-ink"
+              />
+              <div className={`h-8 sm:h-9 w-px ${light || open ? "bg-paper/40" : "bg-ink/25"}`} />
+              <div className="flex flex-col text-left">
+                <span
+                  className={`font-serif tracking-[0.16em] font-bold leading-none ${
+                    light || open ? "text-paper" : "text-ink"
                   }`}
-                style={{ fontSize: "clamp(18px, 2.2vw, 24px)" }}
-              >
-                SUFI&apos;S CAFE
-              </span>
-              <span
-                className={`text-[9.5px] sm:text-[11px] font-semibold uppercase tracking-[0.24em] mt-1 leading-none ${light || open ? "text-paper/90" : "text-ink/75"
+                  style={{ fontSize: "clamp(18px, 2.2vw, 24px)" }}
+                >
+                  SUFI&apos;S CAFE
+                </span>
+                <span
+                  className={`text-[9.5px] sm:text-[11px] font-semibold uppercase tracking-[0.24em] mt-1 leading-none ${
+                    light || open ? "text-paper/90" : "text-ink/75"
                   }`}
-              >
-                COFFEE &amp; BAKERY
-              </span>
-            </div>
-          </button>
+                >
+                  COFFEE &amp; BAKERY
+                </span>
+              </div>
+            </button>
+          </div>
 
-          {/* Center: Hours / Time */}
+          {/* Middle Partition: Hours / Time */}
           <div className="hidden lg:flex items-center gap-2 text-[13px] tracking-wide font-medium">
             <Clock className={`size-3.5 ${light ? "text-paper/85" : "text-[#006241]"}`} />
             <span className={light ? "text-paper/95" : "text-[#1e3932]"}>{BRAND.hours}</span>
           </div>
 
+          {/* Right Partition: Call Button + Navbar Button */}
           <div className="flex items-center gap-2 sm:gap-3">
-            <LangSwitch light={light} />
             <a
               href={BRAND.tel}
-              className={`btn-line !py-2 !px-3 sm:!px-4 text-xs sm:text-sm inline-flex items-center gap-1.5 ${light ? "!border-paper/50 !text-paper hover:!bg-paper/10" : ""}`}
+              className={`btn-line !py-2 !px-3 sm:!px-4 text-xs sm:text-sm inline-flex items-center gap-1.5 ${
+                light ? "!border-paper/50 !text-paper hover:!bg-paper/10" : ""
+              }`}
             >
               <Phone className="size-3.5" />
               <span className="hidden md:inline">{BRAND.phone}</span>
             </a>
+
             <button
-              aria-label="Menu"
+              aria-label="Open navigation menu"
               onClick={() => setOpen((o) => !o)}
-              className={`btn-ink !size-[42px] sm:!size-[46px] !rounded-full !p-0 ${light || open ? "!border-paper !bg-paper !text-ink" : ""}`}
+              className={`btn-ink !size-[42px] sm:!size-[46px] !rounded-full !p-0 ${
+                light || open ? "!border-paper !bg-paper !text-ink" : ""
+              }`}
             >
               <span className="relative block h-3 w-4">
                 <motion.span

@@ -5,8 +5,8 @@ import { motion } from "framer-motion";
 import { ArrowLeft, Clock, Phone } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { IntroRibbon } from "@/components/site/IntroRibbon";
-import { LangSwitch } from "@/components/site/LangSwitch";
 import { MenuItemModal } from "@/components/site/MenuItemModal";
+import { Navbar } from "@/components/site/Navbar";
 import { MENU, type FullMenuItem } from "@/data/menu";
 import { BRAND, money } from "@/lib/brand";
 import { useLang } from "@/lib/i18n";
@@ -89,48 +89,7 @@ export default function MenuPage() {
     <div className="min-h-screen overflow-x-hidden bg-paper">
       {intro && <IntroRibbon onDone={() => setIntro(false)} color="#006241" />}
 
-      <header
-        ref={navRef as never}
-        className="sticky top-0 z-[50] border-b bg-paper/85 backdrop-blur"
-      >
-        <div className="container-x flex items-center justify-between gap-3 py-3 sm:gap-4 sm:py-4">
-          <button
-            onClick={() => router.push("/")}
-            aria-label="Back to home"
-            className="group flex min-w-0 items-center gap-3 sm:gap-4 py-1"
-          >
-            <ArrowLeft className="size-5 shrink-0 text-ink transition-transform duration-200 group-hover:-translate-x-1" />
-            <img
-              src="/images/logo.png"
-              alt="Sufi's Cafe Logo"
-              className="size-11 sm:size-13 rounded-full object-contain drop-shadow-md transition-transform duration-300 group-hover:scale-105 shrink-0 ring-1 ring-[rgba(0,98,65,0.2)]"
-            />
-            <div className="h-8 w-px bg-ink/20 hidden xs:block" />
-            <div className="flex flex-col text-left">
-              <span className="font-serif tracking-[0.16em] font-bold text-ink leading-none text-[18px] sm:text-[22px]">
-                SUFI&apos;S CAFE
-              </span>
-              <span className="text-[9.5px] sm:text-[11px] font-semibold uppercase tracking-[0.24em] text-ink/75 mt-1 leading-none">
-                COFFEE &amp; BAKERY
-              </span>
-            </div>
-          </button>
-          <div className="hidden lg:flex items-center gap-2 text-[13px] tracking-wide font-medium">
-            <Clock className="size-3.5 text-[#006241]" />
-            <span className="text-[#1e3932]">{BRAND.hours}</span>
-          </div>
-          <div className="flex shrink-0 items-center gap-2 sm:gap-3">
-            <LangSwitch />
-            <a
-              href={BRAND.tel}
-              className="btn-line !py-2 !px-3 sm:!px-4 text-xs sm:text-sm inline-flex items-center gap-1.5"
-            >
-              <Phone className="size-3.5" />
-              <span className="hidden md:inline">{BRAND.phone}</span>
-            </a>
-          </div>
-        </div>
-      </header>
+      <Navbar sticky showBack headerRef={navRef} />
 
       <motion.div
         className="container-x pb-6 pt-8 sm:pb-8 sm:pt-12"
