@@ -97,13 +97,13 @@ export default function HomePage() {
     const scale = useTransform(scrollYProgress, [0, 1], [1.05, 1.14]);
 
     return (
-      <section id="start" className="p-4 max-sm:p-3">
+      <section id="start" className="relative h-screen min-h-[600px] w-full overflow-hidden max-sm:min-h-[520px]">
         <motion.figure
           ref={ref as never}
           initial={false}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1 }}
-          className="relative h-[calc(100svh-32px)] w-full overflow-hidden rounded-[40px] bg-black shadow-[0_50px_100px_-60px_rgba(0,0,0,.5)] max-lg:h-[calc(100svh-32px)] max-lg:min-h-[560px] max-sm:h-[calc(100svh-24px)] max-sm:min-h-[520px] max-sm:rounded-[28px]"
+          className="relative h-full w-full overflow-hidden bg-black"
         >
           <motion.video
             src={HERO_VIDEO}
