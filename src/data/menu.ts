@@ -47,8 +47,10 @@ const IMG = {
   // Cold Brew & Iced
   coldbrew: "/images/cold-brew-glass.jpg",
   vanillacoldbrew: "/images/vanilla-cold-brew.jpg",
+  hazelnutcoldbrew: "/images/hazelnut-cold-brew.jpg",
   icedlatte: "/images/iced-latte.jpg",
   carameliced: "/images/caramel-iced-latte.jpg",
+  icedamericano: "/images/iced-americano.jpg",
   iced: "/images/iced-coffee.jpg",
 
   // Signature Coffee
@@ -58,7 +60,7 @@ const IMG = {
   turkish: "/images/turkish-coffee.jpg",
   coconutlatte: "/images/coconut-latte.jpg",
   cinnamonlatte: "/images/cinnamon-latte.jpg",
-  tiramisu: "/images/tiramisu.jpg",
+  tiramisu: "/images/tiramisu-latte.jpg",
 
   // Add-ons
   oat: "/images/oat-milk.jpg",
@@ -167,11 +169,11 @@ export const MENU: FullMenuCategory[] = [
     items: [
       item("Classic Cold Brew", "क्लासिक कोल्ड ब्रू", "Slow steeped for 18 hours in cold filtered water for low acidity and sweet depth", "18 घंटे धीमी गति से कोल्ड स्टीप की गई बेहद स्मूद कॉफ़ी", 450, { img: IMG.coldbrew }),
       item("Vanilla Cold Brew", "वैनिला कोल्ड ब्रू", "18-hour cold brew infused with organic vanilla bean syrup", "नेचुरल वैनिला के सौम्य स्वाद से भरपूर रिफ्रेशिंग कोल्ड ब्रू", 490, { img: IMG.vanillacoldbrew }),
-      item("Hazelnut Cold Brew", "हेज़लनट कोल्ड ब्रू", "Crisp cold brew sweetened with rich roasted hazelnut syrup", "भुने हुए हेज़लनट के नटी स्वाद के साथ कोल्ड ब्रू", 490, { img: IMG.coldbrew }),
+      item("Hazelnut Cold Brew", "हेज़लनट कोल्ड ब्रू", "Crisp cold brew sweetened with rich roasted hazelnut syrup", "भुने हुए हेज़लनट के नटी स्वाद के साथ कोल्ड ब्रू", 490, { img: IMG.hazelnutcoldbrew }),
       item("Cold Brew Mocha", "कोल्ड ब्रू मोका", "Cold brew blended with artisanal dark chocolate and chilled milk", "कोल्ड ब्रू, डार्क चॉकलेट और ठंडे दूध का लाजवाब मेल", 520, { img: IMG.mocha }),
       item("Iced Latte", "आइस्ड लाते", "Chilled milk and fresh double espresso poured over rocks", "बर्फ, ठंडा दूध और ताज़ा डबल एस्प्रेसो शॉट", 450, { img: IMG.icedlatte }),
       item("Caramel Iced Latte", "कारमेल आइस्ड लाते", "Double espresso and cold milk swirled with sweet buttery caramel", "रिच कारमेल और ताज़ा आइस्ड लाते", 490, { img: IMG.carameliced }),
-      item("Iced Americano", "आइस्ड अमेरिकानो", "Double espresso over crisp cold water and ice for clean refreshing clarity", "बर्फ और ठंडे पानी में डबल एस्प्रेसो शॉट", 420, { img: IMG.americano }),
+      item("Iced Americano", "आइस्ड अमेरिकानो", "Double espresso over crisp cold water and ice for clean refreshing clarity", "बर्फ और ठंडे पानी में डबल एस्प्रेसो शॉट", 420, { img: IMG.icedamericano }),
       item("Iced Spanish Latte", "आइस्ड स्पैनिश लाते", "Sweet condensed milk, chilled whole milk and dark espresso over crushed ice", "कंडेंस्ड मिल्क, ठंडा दूध और डार्क एस्प्रेसो", 490, { img: IMG.spanishlatte }),
     ],
   },
