@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { ArrowLeft, Phone } from "lucide-react";
+import { ArrowLeft, Clock, Phone } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { IntroRibbon } from "@/components/site/IntroRibbon";
 import { LangSwitch } from "@/components/site/LangSwitch";
@@ -115,12 +115,18 @@ export default function MenuPage() {
               </span>
             </div>
           </button>
-          <span className="hidden text-[13px] text-muted lg:block">{BRAND.hours}</span>
+          <div className="hidden lg:flex items-center gap-2 text-[13px] tracking-wide font-medium">
+            <Clock className="size-3.5 text-[#006241]" />
+            <span className="text-[#1e3932]">{BRAND.hours}</span>
+          </div>
           <div className="flex shrink-0 items-center gap-2 sm:gap-3">
             <LangSwitch />
-            <a href={BRAND.tel} className="btn-ink !px-3 !py-2 text-[13px] sm:!px-5 sm:!py-2.5">
-              <Phone className="size-4" />
-              <span className="hidden xs:inline sm:inline">{t.bookShort}</span>
+            <a
+              href={BRAND.tel}
+              className="btn-line !py-2 !px-3 sm:!px-4 text-xs sm:text-sm inline-flex items-center gap-1.5"
+            >
+              <Phone className="size-3.5" />
+              <span className="hidden md:inline">{BRAND.phone}</span>
             </a>
           </div>
         </div>

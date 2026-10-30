@@ -30,38 +30,50 @@ export default function AboutPage() {
 
       {/* Header bar */}
       <header className="sticky top-0 z-50 border-b border-[rgba(0,98,65,0.1)] bg-paper/85 backdrop-blur-md">
-        <div className="container-x flex h-20 items-center justify-between gap-4">
+        <div className="container-x flex items-center justify-between gap-3 py-2.5 sm:gap-4 sm:py-3">
           <button
             onClick={() => router.push("/")}
             aria-label="Back to home"
-            className="group flex items-center gap-2 sm:gap-2.5 rounded-full border border-[rgba(0,98,65,0.2)] bg-white/80 py-1.5 pl-3 pr-4 text-sm font-medium transition-all hover:border-[#006241] hover:bg-white hover:shadow-sm"
+            className="group flex min-w-0 items-center gap-2.5 sm:gap-3.5 py-0.5"
           >
-            <ArrowLeft className="size-4 transition-transform group-hover:-translate-x-1" />
+            <ArrowLeft className="size-5 shrink-0 text-ink transition-transform duration-200 group-hover:-translate-x-1" />
             <img
               src="/images/logo.png"
               alt="Sufi's Cafe Logo"
-              className="size-7 rounded-full object-contain"
+              className="size-11 sm:size-13 rounded-full object-contain drop-shadow-md transition-transform duration-300 group-hover:scale-105 shrink-0 ring-1 ring-[rgba(0,98,65,0.2)]"
             />
-            <span className="font-serif tracking-[0.14em] font-bold text-ink text-sm sm:text-base">
-              SUFI&apos;S CAFE
-            </span>
+            <div className="h-8 w-px bg-ink/20 hidden xs:block" />
+            <div className="flex flex-col text-left">
+              <span className="font-serif tracking-[0.16em] font-bold text-ink leading-none text-[18px] sm:text-[22px]">
+                SUFI&apos;S CAFE
+              </span>
+              <span className="text-[9.5px] sm:text-[11px] font-semibold uppercase tracking-[0.24em] text-ink/75 mt-1 leading-none">
+                COFFEE &amp; BAKERY
+              </span>
+            </div>
           </button>
 
-          <div className="flex items-center gap-3">
+          {/* Center: Hours / Time */}
+          <div className="hidden lg:flex items-center gap-2 text-[13px] tracking-wide font-medium">
+            <Clock className="size-3.5 text-[#006241]" />
+            <span className="text-[#1e3932]">{BRAND.hours}</span>
+          </div>
+
+          <div className="flex shrink-0 items-center gap-2 sm:gap-3">
             <LangSwitch light={false} />
-            <button
-              onClick={() => router.push("/menu")}
-              className="btn-ink max-sm:hidden !py-2.5 !px-5 !text-sm"
-            >
-              {lang === "en" ? "View Menu" : "मेन्यू देखें"}
-            </button>
             <a
               href={BRAND.tel}
-              className="btn-line !py-2.5 !px-4 !text-sm flex items-center gap-1.5"
+              className="btn-line !py-2 !px-3 sm:!px-4 text-xs sm:text-sm inline-flex items-center gap-1.5"
             >
               <Phone className="size-3.5" />
-              <span className="max-sm:hidden">{BRAND.phone}</span>
+              <span className="hidden md:inline">{BRAND.phone}</span>
             </a>
+            <button
+              onClick={() => router.push("/menu")}
+              className="btn-ink max-sm:hidden !py-2 !px-4 !text-xs sm:!text-sm"
+            >
+              {lang === "en" ? "Menu" : "मेन्यू"}
+            </button>
           </div>
         </div>
       </header>

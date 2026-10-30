@@ -2,7 +2,7 @@
 
 import { usePathname, useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { Phone } from "lucide-react";
+import { Clock, Phone } from "lucide-react";
 import { useEffect, useState } from "react";
 import { BRAND } from "@/lib/brand";
 import { useLang } from "@/lib/i18n";
@@ -134,18 +134,25 @@ export function Navbar() {
             </div>
           </button>
 
+          {/* Center: Hours / Time */}
+          <div className="hidden lg:flex items-center gap-2 text-[13px] tracking-wide font-medium">
+            <Clock className={`size-3.5 ${light ? "text-paper/85" : "text-[#006241]"}`} />
+            <span className={light ? "text-paper/95" : "text-[#1e3932]"}>{BRAND.hours}</span>
+          </div>
+
           <div className="flex items-center gap-2 sm:gap-3">
+            <LangSwitch light={light} />
             <a
               href={BRAND.tel}
-              className={`btn-line hidden md:inline-flex ${light ? "!border-paper/50 !text-paper hover:!bg-paper/10" : ""}`}
+              className={`btn-line !py-2 !px-3 sm:!px-4 text-xs sm:text-sm inline-flex items-center gap-1.5 ${light ? "!border-paper/50 !text-paper hover:!bg-paper/10" : ""}`}
             >
-              <Phone className="size-4" />
-              {BRAND.phone}
+              <Phone className="size-3.5" />
+              <span className="hidden md:inline">{BRAND.phone}</span>
             </a>
             <button
               aria-label="Menu"
               onClick={() => setOpen((o) => !o)}
-              className={`btn-ink !size-[46px] !rounded-full !p-0 ${light || open ? "!border-paper !bg-paper !text-ink" : ""}`}
+              className={`btn-ink !size-[42px] sm:!size-[46px] !rounded-full !p-0 ${light || open ? "!border-paper !bg-paper !text-ink" : ""}`}
             >
               <span className="relative block h-3 w-4">
                 <motion.span
