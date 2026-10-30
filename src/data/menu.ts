@@ -119,9 +119,11 @@ const IMG = {
   // Desserts
   brownie: "/images/chocolate-brownie.jpg",
   cheesecake: "/images/cheesecake.jpg",
+  tiramisudessert: "/images/tiramisu-dessert.jpg",
   lavacake: "/images/chocolate-lava-cake.jpg",
   falooda: "/images/kulfi-falooda.jpg",
   biscoffcheesecake: "/images/biscoff-cheesecake.jpg",
+  sufispecialdessert: "/images/sufi-special-dessert.jpg",
   cupcake: "/images/hero-cupcake.jpg",
 };
 
@@ -290,11 +292,11 @@ export const MENU: FullMenuCategory[] = [
     items: [
       item("Chocolate Brownie", "चॉकलेट ब्राउनी", "Dense, fudgy dark chocolate walnut brownie served warm", "अखरोट और डार्क चॉकलेट से बनी गर्म, फजी ब्राउनी", 450, { img: IMG.brownie }),
       item("Cheesecake", "चीज़केक", "Velvety baked cream cheese over a buttery graham cracker crust", "मखमली बेक्ड क्रीम चीज़ और क्रिस्पी बटर क्रस्ट", 480, { img: IMG.cheesecake }),
-      item("Tiramisu", "तिरामिसु", "Espresso-dipped savoiardi biscuits layered with fluffy mascarpone cream and cocoa", "एस्प्रेसो में डूबे बिस्कुट और मस्कार्पोने क्रीम का इटैलियन क्लासिक", 520, { img: IMG.tiramisu }),
+      item("Tiramisu", "तिरामिसु", "Espresso-dipped savoiardi biscuits layered with fluffy mascarpone cream and cocoa", "एस्प्रेसो में डूबे बिस्कुट और मस्कार्पोने क्रीम का इटैलियन क्लासिक", 520, { img: IMG.tiramisudessert }),
       item("Chocolate Lava Cake", "चॉकलेट लावा केक", "Warm molten chocolate cake with a rich liquid truffle center", "अंदर से पिघलती गर्म चॉकलेट वाला स्वादिष्ट लावा केक", 550, { img: IMG.lavacake }),
       item("Kulfi Falooda", "कुल्फी फ़लूदा", "Traditional malai kulfi slice topped with basil seeds, falooda sev and rose syrup", "मलाई कुल्फी, फलूदा सेव, सब्ज़ा और रूह अफ़ज़ा का शाही मेल", 480, { img: IMG.falooda }),
       item("Lotus Biscoff Cheesecake", "लोटस बिस्कॉफ चीज़केक", "Creamy cheesecake infused and topped with decadent Lotus Biscoff speculoos spread", "लोटस बिस्कॉफ के कैरेमल स्प्रेड से सजी बेहद स्वादिष्ट चीज़केक", 550, { img: IMG.biscoffcheesecake }),
-      item("Sufi's Special Dessert", "सूफ़िज़ स्पेशल डेज़र्ट", "Our pastry chef's daily signature creation featuring handcrafted layers and garnish", "सूफ़ी कैफ़े की सिग्नेचर सीक्रेट डेज़र्ट, शेफ़ द्वारा विशेष रूप से तैयार", 620, { img: IMG.cupcake }),
+      item("Sufi's Special Dessert", "सूफ़िज़ स्पेशल डेज़र्ट", "Our pastry chef's daily signature creation featuring handcrafted layers and garnish", "सूफ़ी कैफ़े की सिग्नेचर सीक्रेट डेज़र्ट, शेफ़ द्वारा विशेष रूप से तैयार", 620, { img: IMG.sufispecialdessert }),
     ],
   },
 ];
