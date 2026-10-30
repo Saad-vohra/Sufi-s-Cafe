@@ -33,10 +33,18 @@ export default function AboutPage() {
         <div className="container-x flex h-20 items-center justify-between gap-4">
           <button
             onClick={() => router.push("/")}
-            className="group flex items-center gap-2 rounded-full border border-[rgba(0,98,65,0.2)] bg-white/80 px-4 py-2 text-sm font-medium transition-all hover:border-[#006241] hover:bg-white hover:shadow-sm"
+            aria-label="Back to home"
+            className="group flex items-center gap-2 sm:gap-2.5 rounded-full border border-[rgba(0,98,65,0.2)] bg-white/80 py-1.5 pl-3 pr-4 text-sm font-medium transition-all hover:border-[#006241] hover:bg-white hover:shadow-sm"
           >
             <ArrowLeft className="size-4 transition-transform group-hover:-translate-x-1" />
-            <span>{lang === "en" ? "Back to Home" : "होम पर लौटें"}</span>
+            <img
+              src="/images/logo.png"
+              alt="Sufi's Cafe Logo"
+              className="size-7 rounded-full object-contain"
+            />
+            <span className="font-serif tracking-[0.14em] font-bold text-ink text-sm sm:text-base">
+              SUFI&apos;S CAFE
+            </span>
           </button>
 
           <div className="flex items-center gap-3">
@@ -468,3 +476,4 @@ export default function AboutPage() {
     </div>
   );
 }
+

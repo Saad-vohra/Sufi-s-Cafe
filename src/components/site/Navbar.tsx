@@ -108,28 +108,28 @@ export function Navbar() {
           : "bg-transparent"
           }`}
       >
-        <div className="container-x flex items-center justify-between px-3 py-4 sm:px-6 lg:px-8">
-          <button onClick={() => go("start")} className="group flex items-center gap-3 sm:gap-4 py-1">
+        <div className="container-x flex items-center justify-between px-3 py-2.5 sm:px-6 sm:py-3 lg:px-8">
+          <button onClick={() => go("start")} className="group flex items-center gap-2.5 sm:gap-3.5 py-0.5">
             <img
               src="/images/logo.png"
               alt="Sufi's Cafe Logo"
-              className={`size-16 sm:size-20 md:size-24 rounded-full object-contain drop-shadow-xl transition-transform duration-300 group-hover:scale-105 shrink-0 ${light ? "ring-2 ring-paper/40" : "ring-1 ring-[rgba(0,98,65,0.2)]"
+              className={`size-12 sm:size-14 md:size-16 rounded-full object-contain drop-shadow-md transition-transform duration-300 group-hover:scale-105 shrink-0 ${light ? "ring-2 ring-paper/40" : "ring-1 ring-[rgba(0,98,65,0.2)]"
                 }`}
             />
-            <div className={`h-10 sm:h-12 w-px ${light || open ? "bg-paper/40" : "bg-ink/25"}`} />
+            <div className={`h-8 sm:h-9 w-px ${light || open ? "bg-paper/40" : "bg-ink/25"}`} />
             <div className="flex flex-col text-left">
               <span
-                className={`font-serif tracking-[0.2em] font-bold leading-none ${light || open ? "text-paper" : "text-ink"
+                className={`font-serif tracking-[0.16em] font-bold leading-none ${light || open ? "text-paper" : "text-ink"
                   }`}
-                style={{ fontSize: "clamp(24px, 3vw, 32px)" }}
+                style={{ fontSize: "clamp(18px, 2.2vw, 24px)" }}
               >
-                SUFI'S
+                SUFI&apos;S CAFE
               </span>
               <span
-                className={`text-[11px] sm:text-[12.5px] font-semibold uppercase tracking-[0.28em] mt-1.5 leading-none ${light || open ? "text-paper/90" : "text-ink/75"
+                className={`text-[9.5px] sm:text-[11px] font-semibold uppercase tracking-[0.24em] mt-1 leading-none ${light || open ? "text-paper/90" : "text-ink/75"
                   }`}
               >
-                COFFEE & BAKERY
+                COFFEE &amp; BAKERY
               </span>
             </div>
           </button>

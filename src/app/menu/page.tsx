@@ -103,15 +103,15 @@ export default function MenuPage() {
             <img
               src="/images/logo.png"
               alt="Sufi's Cafe Logo"
-              className="size-14 sm:size-16 rounded-full object-contain drop-shadow-md transition-transform duration-300 group-hover:scale-105 shrink-0 ring-1 ring-[rgba(0,98,65,0.2)]"
+              className="size-11 sm:size-13 rounded-full object-contain drop-shadow-md transition-transform duration-300 group-hover:scale-105 shrink-0 ring-1 ring-[rgba(0,98,65,0.2)]"
             />
-            <div className="h-9 w-px bg-ink/20 hidden xs:block" />
+            <div className="h-8 w-px bg-ink/20 hidden xs:block" />
             <div className="flex flex-col text-left">
-              <span className="font-serif tracking-[0.2em] font-bold text-ink leading-none text-[20px] sm:text-[24px]">
-                SUFI'S
+              <span className="font-serif tracking-[0.16em] font-bold text-ink leading-none text-[18px] sm:text-[22px]">
+                SUFI&apos;S CAFE
               </span>
-              <span className="text-[10px] sm:text-[11.5px] font-semibold uppercase tracking-[0.28em] text-ink/75 mt-1 leading-none">
-                COFFEE & CRAFT
+              <span className="text-[9.5px] sm:text-[11px] font-semibold uppercase tracking-[0.24em] text-ink/75 mt-1 leading-none">
+                COFFEE &amp; BAKERY
               </span>
             </div>
           </button>
