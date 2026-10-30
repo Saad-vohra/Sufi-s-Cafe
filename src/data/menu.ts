@@ -79,6 +79,7 @@ const IMG = {
   // Mocktails
   lemonade: "/images/lemonade.jpg",
   blueocean: "/images/blue-ocean.jpg",
+  berrybliss: "/images/berry-bliss.jpg",
   passion: "/images/passionfruit.jpg",
   strawmatcha: "/images/strawberry-matcha.jpg",
   orange: "/images/orange-juice.jpg",
@@ -226,7 +227,7 @@ export const MENU: FullMenuCategory[] = [
       item("Virgin Mojito", "वर्जिन मोहीतो", "Muddled fresh garden mint, lime wedges, pure cane sugar and sparkling soda", "ताज़ा पुदीना, नींबू, सोडा और बर्फ की ताज़गी", 490, { img: IMG.lemonade }),
       item("Blue Ocean", "ब्लू ओशन", "Vibrant blue curacao citrus cordial with lemon, mint and chilled tonic", "नीले समंदर जैसा वाइब्रेंट सिट्रस कूलर और सोडा", 490, { img: IMG.blueocean }),
       item("Passion Paradise", "पैशन पैराडाइज़", "Tropical passion fruit nectar with a splash of citrus and crushed ice", "पैशन फ्रूट और ताज़े नीबू का ट्रॉपिकल मिश्रण", 500, { img: IMG.passion }),
-      item("Berry Bliss", "बेरी ब्लिस", "Crushed strawberries, blackberries, cranberry juice and fizzy soda", "ताज़ी बेरीज़ और क्रैनबेरी का मीठा व खट्टा फिज्जी ड्रिंक", 500, { img: IMG.strawmatcha }),
+      item("Berry Bliss", "बेरी ब्लिस", "Crushed strawberries, blackberries, cranberry juice and fizzy soda", "ताज़ी बेरीज़ और क्रैनबेरी का मीठा व खट्टा फिज्जी ड्रिंक", 500, { img: IMG.berrybliss }),
       item("Pina Colada", "पिना कोलाडा", "Silky coconut cream, sweet pineapple puree and crushed ice blended smooth", "अनानास का गूदा और मखमली नारियल क्रीम का क्लासिक कूलर", 500, { img: IMG.orange }),
       item("Green Apple Mojito", "ग्रीन एप्पल मोहीतो", "Crisp tart green apple syrup muddled with mint leaves, lemon and soda", "क्रिस्पी ग्रीन एप्पल, पुदीना और लेमन सोडा", 500, { img: IMG.greenapple }),
       item("Watermelon Cooler", "वॉटरमेलन कूलर", "Freshly pressed sweet watermelon juice, basil seeds and Himalayan pink salt", "ताज़ा तरबूज का जूस, पुदीना और काला नमक", 490, { img: IMG.watermelon }),
