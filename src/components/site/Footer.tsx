@@ -34,11 +34,6 @@ export function Footer() {
         >
           {BRAND.mark}
         </motion.div>
-        <img
-          src="/images/logo.png"
-          alt="Sufi's Cafe Emblem"
-          className="size-24 sm:size-36 md:size-48 opacity-25 object-contain shrink-0"
-        />
       </div>
 
       <div className="mt-10 grid gap-10 md:grid-cols-2">

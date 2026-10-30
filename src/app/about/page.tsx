@@ -35,28 +35,18 @@ export default function AboutPage() {
         {/* Hero Section */}
         <section className="container-x pt-14 pb-16 lg:pt-20 lg:pb-24">
           <div className="mx-auto max-w-4xl text-center">
-            {/* Logo Emblem */}
-            <motion.div
-              initial={still ? false : { opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.7 }}
-              className="mx-auto mb-8 size-28 overflow-hidden rounded-full border-4 border-[#006241]/25 bg-white p-2 shadow-xl sm:size-36"
-            >
-              <img
-                src="/images/logo.png"
-                alt="Sufi's Cafe & Bakery Emblem"
-                className="size-full object-contain"
-              />
-            </motion.div>
-
             <motion.div
               initial={still ? false : { opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="inline-flex items-center gap-2 rounded-full border border-[rgba(0,98,65,0.2)] bg-white/80 px-4 py-1.5 shadow-sm backdrop-blur-sm"
+              transition={{ duration: 0.6 }}
+              className="inline-flex items-center gap-2.5 rounded-full border border-[#006241]/25 bg-white/90 px-5 py-2 shadow-sm backdrop-blur-sm"
             >
-              <Sparkles className="size-3.5 text-[#006241]" />
-              <span className="eyebrow !text-[#006241] !tracking-[0.2em]">
+              <img
+                src="/images/logo.png"
+                alt="Sufi's Cafe"
+                className="size-5 rounded-full object-contain"
+              />
+              <span className="eyebrow !text-[#006241] !tracking-[0.22em] font-semibold">
                 {BRAND.name} · EST. 2026 · FRESH BREW
               </span>
             </motion.div>
@@ -64,7 +54,7 @@ export default function AboutPage() {
             <motion.h1
               initial={still ? false : { opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.2 }}
+              transition={{ duration: 0.7, delay: 0.15 }}
               className={`${display} mt-6 leading-[1.05] text-[#1e3932]`}
               style={{ fontSize: "clamp(42px,6.5vw,86px)" }}
             >
@@ -82,15 +72,15 @@ export default function AboutPage() {
             <motion.div
               initial={still ? false : { opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.3 }}
+              transition={{ duration: 0.7, delay: 0.25 }}
               className="mx-auto mt-6 max-w-2xl"
             >
-              <p className="font-serif text-xl italic text-[#006241] sm:text-2xl">
+              <p className="font-serif text-2xl italic text-[#1e3932] sm:text-3xl leading-snug">
                 {lang === "en"
                   ? "“Let the heart find peace in every sip.”"
                   : "“हर घूंट में दिल को सुकून और रूह को शांति मिले।”"}
               </p>
-              <p className="mt-2 text-sm uppercase tracking-widest text-muted">
+              <p className="mt-3 text-sm sm:text-base font-semibold uppercase tracking-[0.2em] text-[#006241]">
                 {lang === "en"
                   ? "Where every sip brings peace to your soul."
                   : "जहाँ हर घूंट आपकी आत्मा को शांति और ताज़गी प्रदान करता है।"}
@@ -102,26 +92,28 @@ export default function AboutPage() {
         {/* Hero Visual Card */}
         <section className="container-x mb-20 lg:mb-28">
           <div className="relative overflow-hidden rounded-[36px] border border-white/60 bg-[#1e3932] shadow-2xl">
-            <div className="relative aspect-[16/9] max-h-[580px] w-full min-h-[380px]">
+            <div className="relative aspect-[16/9] max-h-[580px] w-full min-h-[400px]">
               <img
                 src="/images/about-cafe.jpg"
                 alt="Sufi's Cafe Interior Ambiance"
                 className="size-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-black/20" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#142823]/95 via-[#142823]/60 to-black/30" />
 
               <div className="absolute inset-0 flex flex-col justify-end p-8 sm:p-14 text-white">
-                <span className="eyebrow !text-[#d4e9e2] !tracking-[0.25em]">OUR SANCTUARY</span>
-                <h2 className={`${display} mt-2 text-3xl sm:text-5xl lg:text-6xl text-white leading-tight`}>
-                  {lang === "en"
-                    ? "A place of peace, aroma, and warmth."
-                    : "सुकून, सुगंध और आत्मीयता का सुंदर संगम।"}
-                </h2>
-                <p className="mt-3 max-w-2xl text-sm sm:text-base text-paper/85">
-                  {lang === "en"
-                    ? "Tucked in Kajipura, Kheda, Sufi's Cafe was envisioned as more than a coffee shop. It is a soulful neighborhood retreat designed for pause, presence, and pure flavor."
-                    : "काजीपुरा, खेड़ा (गुजरात) में बसा सूफ़ी कैफ़े सिर्फ़ एक कॉफ़ी शॉप नहीं है — यह दिल को तसल्ली देने वाला एक ऐसा आशियाना है जहाँ हर पल खास बन जाता है।"}
-                </p>
+                <div className="max-w-3xl rounded-3xl bg-black/40 p-6 sm:p-8 backdrop-blur-md border border-white/15">
+                  <span className="eyebrow !text-[#d4e9e2] !tracking-[0.25em]">OUR SANCTUARY</span>
+                  <h2 className={`${display} mt-2 text-3xl sm:text-5xl lg:text-6xl text-white leading-tight`}>
+                    {lang === "en"
+                      ? "A place of peace, aroma, and warmth."
+                      : "सुकून, सुगंध और आत्मीयता का सुंदर संगम।"}
+                  </h2>
+                  <p className="mt-3 text-base sm:text-lg text-paper/95 leading-relaxed">
+                    {lang === "en"
+                      ? "Tucked in Kajipura, Kheda, Sufi's Cafe was envisioned as more than a coffee shop. It is a soulful neighborhood retreat designed for pause, presence, and pure flavor."
+                      : "काजीपुरा, खेड़ा (गुजरात) में बसा सूफ़ी कैफ़े सिर्फ़ एक कॉफ़ी शॉप नहीं है — यह दिल को तसल्ली देने वाला एक ऐसा आशियाना है जहाँ हर पल खास बन जाता है।"}
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -132,62 +124,80 @@ export default function AboutPage() {
           <div className="grid grid-cols-12 items-center gap-10 lg:gap-16">
             {/* Story Text */}
             <div className="col-span-12 lg:col-span-7">
-              <span className="eyebrow !text-[#006241]">ABOUT OUR ORIGIN</span>
-              <h2 className={`${display} mt-3 text-3xl text-[#1e3932] sm:text-5xl leading-tight`}>
-                {lang === "en" ? (
-                  <>
-                    The Sufi’s Philosophy <br />
-                    <span className="text-[#006241]">&amp; The Art of Coffee</span>
-                  </>
-                ) : (
-                  <>
-                    सूफ़ी विचार दर्शन <br />
-                    <span className="text-[#006241]">और कॉफ़ी का हुनर</span>
-                  </>
-                )}
-              </h2>
+              <div className="rounded-[32px] border border-[#006241]/15 bg-white/90 p-8 sm:p-12 shadow-sm backdrop-blur-sm">
+                <span className="eyebrow !text-[#006241] !tracking-[0.22em] font-semibold">ABOUT OUR ORIGIN</span>
+                <h2 className={`${display} mt-3 text-3xl text-[#1e3932] sm:text-5xl leading-tight`}>
+                  {lang === "en" ? (
+                    <>
+                      The Sufi’s Philosophy <br />
+                      <span className="text-[#006241]">&amp; The Art of Coffee</span>
+                    </>
+                  ) : (
+                    <>
+                      सूफ़ी विचार दर्शन <br />
+                      <span className="text-[#006241]">और कॉफ़ी का हुनर</span>
+                    </>
+                  )}
+                </h2>
 
-              <div className="mt-8 space-y-5 text-base sm:text-lg leading-relaxed text-[#2c3e35]">
-                {lang === "en" ? (
-                  <>
-                    <p>
-                      The name <strong>Sufi&apos;s Cafe</strong> is inspired by the timeless tradition of Sufism — rooted in tranquility, sincerity, warmth, and the sacred beauty of gathering together. We believe that coffee is more than caffeine; it is a ritual of mindful presence and genuine connection.
-                    </p>
-                    <p>
-                      From sourcing 100% specialty Arabica beans to precision-roasting and traditional preparation methods — like authentic Turkish coffee simmered with green cardamom in a copper cezve, slow hand-poured Chemex brews, and silky Spanish lattes — every beverage is prepared with passion and reverence.
-                    </p>
-                    <p>
-                      Whether you are sitting down for a heartfelt conversation, getting lost in a favorite book, or enjoying an all-day brunch with loved ones, our doors and hearts are always open.
-                    </p>
-                  </>
-                ) : (
-                  <>
-                    <p>
-                      <strong>सूफ़ी कैफ़े</strong> का नाम सूफ़ी परंपरा के शाश्वत मूल्यों — शांति, आत्मीयता, सादगी और प्रेम — से प्रेरित है। हमारा मानना है कि कॉफ़ी सिर्फ़ एक ड्रिंक नहीं है, बल्कि यह सुकून पाने और अपनों से जुड़ने का एक खूबसूरत जरिया है।
-                    </p>
-                    <p>
-                      100% अरेबिका बीन्स से लेकर पारंपरिक तांबे के बर्तन में पकी तुर्की कॉफ़ी, हाथ से ब्रू किए गए पोर ओवर, रिफ्रेशिंग कोल्ड ब्रू और मखमली स्पैनिश लाते तक — हमारे मेन्यू का हर कप आपकी आत्मा को ताज़गी देने के लिए बनाया जाता है।
-                    </p>
-                    <p>
-                      चाहे आप अपने दोस्तों के साथ गपशप करना चाहें, शांत बैठकर किताब पढ़ना चाहें, या अपने लैपटॉप पर काम करना चाहें — सूफ़ी कैफ़े में आपका हमेशा खुले दिल से स्वागत है।
-                    </p>
-                  </>
-                )}
-              </div>
+                <div className="mt-8 space-y-5 text-base sm:text-lg leading-relaxed text-[#1e3932]/90">
+                  {lang === "en" ? (
+                    <>
+                      <p>
+                        The name <strong className="font-semibold text-[#1e3932]">Sufi&apos;s Cafe</strong> is inspired by the timeless tradition of Sufism — rooted in tranquility, sincerity, warmth, and the sacred beauty of gathering together. We believe that coffee is more than caffeine; it is a ritual of mindful presence and genuine connection.
+                      </p>
+                      <p>
+                        From sourcing <strong className="font-semibold text-[#006241]">100% specialty Arabica beans</strong> to precision-roasting and traditional preparation methods — like authentic Turkish coffee simmered with green cardamom in a copper cezve, slow hand-poured Chemex brews, and silky Spanish lattes — every beverage is prepared with passion and reverence.
+                      </p>
+                      <p>
+                        Whether you are sitting down for a heartfelt conversation, getting lost in a favorite book, or enjoying an all-day brunch with loved ones, our doors and hearts are always open.
+                      </p>
+                    </>
+                  ) : (
+                    <>
+                      <p>
+                        <strong className="font-semibold text-[#1e3932]">सूफ़ी कैफ़े</strong> का नाम सूफ़ी परंपरा के शाश्वत मूल्यों — शांति, आत्मीयता, सादगी और प्रेम — से प्रेरित है। हमारा मानना है कि कॉफ़ी सिर्फ़ एक ड्रिंक नहीं है, बल्कि यह सुकून पाने और अपनों से जुड़ने का एक खूबसूरत जरिया है।
+                      </p>
+                      <p>
+                        <strong className="font-semibold text-[#006241]">100% अरेबिका बीन्स</strong> से लेकर पारंपरिक तांबे के बर्तन में पकी तुर्की कॉफ़ी, हाथ से ब्रू किए गए पोर ओवर, रिफ्रेशिंग कोल्ड ब्रू और मखमली स्पैनिश लाते तक — हमारे मेन्यू का हर कप आपकी आत्मा को ताज़गी देने के लिए बनाया जाता है।
+                      </p>
+                      <p>
+                        चाहे आप अपने दोस्तों के साथ गपशप करना चाहें, शांत बैठकर किताब पढ़ना चाहें, या अपने लैपटॉप पर काम करना चाहें — सूफ़ी कैफ़े में आपका हमेशा खुले दिल से स्वागत है।
+                      </p>
+                    </>
+                  )}
+                </div>
 
-              {/* Gold Quote Highlight */}
-              <div className="mt-8 rounded-3xl border border-[rgba(0,98,65,0.2)] bg-gradient-to-r from-emerald-50/90 to-amber-50/70 p-6 shadow-sm">
-                <div className="flex items-start gap-4">
-                  <span className="font-serif text-4xl leading-none text-[#006241]">“</span>
-                  <div>
-                    <p className="font-serif text-lg italic text-[#1e3932] sm:text-xl">
-                      {lang === "en"
-                        ? "Where every sip brings peace to your soul."
-                        : "जहाँ हर घूंट आपकी आत्मा को शांति और ताज़गी प्रदान करता है।"}
-                    </p>
-                    <p className="mt-2 text-xs uppercase tracking-wider text-muted font-sans">
-                      {lang === "en" ? "— The Sufi's Cafe Promise" : "— सूफ़ी कैफ़े का वादा"}
-                    </p>
+                {/* Key feature pills */}
+                <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3 pt-6 border-t border-[#006241]/15">
+                  <div className="flex items-center gap-2.5 rounded-2xl bg-paper/80 p-3 border border-ink/10">
+                    <Coffee className="size-5 text-[#006241] shrink-0" />
+                    <span className="text-xs font-semibold text-[#1e3932]">100% Arabica</span>
+                  </div>
+                  <div className="flex items-center gap-2.5 rounded-2xl bg-paper/80 p-3 border border-ink/10">
+                    <Heart className="size-5 text-[#006241] shrink-0" />
+                    <span className="text-xs font-semibold text-[#1e3932]">Mindful Presence</span>
+                  </div>
+                  <div className="flex items-center gap-2.5 rounded-2xl bg-paper/80 p-3 border border-ink/10">
+                    <Sparkles className="size-5 text-[#006241] shrink-0" />
+                    <span className="text-xs font-semibold text-[#1e3932]">Slow-Brew Craft</span>
+                  </div>
+                </div>
+
+                {/* Gold Quote Highlight */}
+                <div className="mt-6 rounded-2xl border border-[rgba(0,98,65,0.25)] bg-gradient-to-r from-emerald-50 to-amber-50/80 p-5 shadow-sm">
+                  <div className="flex items-start gap-3.5">
+                    <span className="font-serif text-3xl leading-none text-[#006241]">“</span>
+                    <div>
+                      <p className="font-serif text-base sm:text-lg italic text-[#1e3932]">
+                        {lang === "en"
+                          ? "Where every sip brings peace to your soul."
+                          : "जहाँ हर घूंट आपकी आत्मा को शांति और ताज़गी प्रदान करता है।"}
+                      </p>
+                      <p className="mt-1 text-[11px] uppercase tracking-wider text-muted font-sans font-semibold">
+                        {lang === "en" ? "— The Sufi's Cafe Promise" : "— सूफ़ी कैफ़े का वादा"}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -196,33 +206,68 @@ export default function AboutPage() {
             {/* Visual Showcase Stack */}
             <div className="col-span-12 lg:col-span-5">
               <div className="grid grid-cols-2 gap-4">
-                <div className="overflow-hidden rounded-3xl border border-white/60 shadow-lg aspect-[4/5] bg-black">
-                  <img
-                    src="/images/turkish-coffee.jpg"
-                    alt="Turkish Coffee at Sufi's"
-                    className="size-full object-cover transition-transform duration-500 hover:scale-105"
-                  />
-                </div>
-                <div className="overflow-hidden rounded-3xl border border-white/60 shadow-lg aspect-[4/5] bg-black mt-8">
+                {/* 1st: Latte */}
+                <div className="group relative overflow-hidden rounded-3xl border border-white/60 shadow-lg aspect-[4/5] bg-paper">
                   <img
                     src="/images/latte.jpg"
-                    alt="Artisanal Latte Art"
-                    className="size-full object-cover transition-transform duration-500 hover:scale-105"
+                    alt="Latte at Sufi's Cafe"
+                    loading="lazy"
+                    decoding="async"
+                    className="size-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent p-4 text-white">
+                    <span className="chip !border-white/30 !bg-white/20 !text-white text-[11px] backdrop-blur-sm">
+                      {lang === "en" ? "Latte Art" : "लाते आर्ट"}
+                    </span>
+                  </div>
                 </div>
-                <div className="overflow-hidden rounded-3xl border border-white/60 shadow-lg aspect-[4/5] bg-black -mt-8">
+
+                {/* 2nd: Pour Over */}
+                <div className="group relative overflow-hidden rounded-3xl border border-white/60 shadow-lg aspect-[4/5] bg-paper mt-8">
+                  <img
+                    src="/images/pourover.jpg"
+                    alt="Pour Over Coffee at Sufi's Cafe"
+                    loading="lazy"
+                    decoding="async"
+                    className="size-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent p-4 text-white">
+                    <span className="chip !border-white/30 !bg-white/20 !text-white text-[11px] backdrop-blur-sm">
+                      {lang === "en" ? "Pour Over" : "पोर ओवर"}
+                    </span>
+                  </div>
+                </div>
+
+                {/* 3rd: Spanish Latte */}
+                <div className="group relative overflow-hidden rounded-3xl border border-white/60 shadow-lg aspect-[4/5] bg-paper -mt-8">
                   <img
                     src="/images/spanish-latte.jpg"
-                    alt="Spanish Latte"
-                    className="size-full object-cover transition-transform duration-500 hover:scale-105"
+                    alt="Spanish Latte at Sufi's Cafe"
+                    loading="lazy"
+                    decoding="async"
+                    className="size-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent p-4 text-white">
+                    <span className="chip !border-white/30 !bg-white/20 !text-white text-[11px] backdrop-blur-sm">
+                      {lang === "en" ? "Spanish Latte" : "स्पैनिश लाते"}
+                    </span>
+                  </div>
                 </div>
-                <div className="overflow-hidden rounded-3xl border border-white/60 shadow-lg aspect-[4/5] bg-black">
+
+                {/* 4th: Siphon Brew */}
+                <div className="group relative overflow-hidden rounded-3xl border border-white/60 shadow-lg aspect-[4/5] bg-paper">
                   <img
-                    src="/images/tiramisu.jpg"
-                    alt="Artisan Tiramisu Dessert"
-                    className="size-full object-cover transition-transform duration-500 hover:scale-105"
+                    src="/images/siphon.jpg"
+                    alt="Siphon Brew at Sufi's Cafe"
+                    loading="lazy"
+                    decoding="async"
+                    className="size-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent p-4 text-white">
+                    <span className="chip !border-white/30 !bg-white/20 !text-white text-[11px] backdrop-blur-sm">
+                      {lang === "en" ? "Siphon Brew" : "साइफन ब्रू"}
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
